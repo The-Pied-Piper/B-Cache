@@ -1,17 +1,10 @@
 const path = require('path');
-var webpack = require('webpack');
-
-if (yargs.argv.p) {
-    plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true }));
-    outputFile = 'bdb' + '.min.js';
-} else {
-    outputFile = 'bdb' + '.js';
-}
+const yargs = require('yargs');
 
 module.exports = {
     entry: './src/row.ts',
     output: {
-        filename: outputFile,
+        filename: 'bdb.js',
         path: path.resolve(__dirname, 'dist'),
         library: 'bdb',
         libraryTarget: 'umd'
@@ -27,5 +20,4 @@ module.exports = {
             { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ }
         ]
     },
-    plugins: plugins
 };

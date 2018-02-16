@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Teaching myself typescript. Come back in a few months when I have had a chance to work on it a bit more.",
   "scripts": {
-    "test": "webpack && mocha -r ts-node/register ./tests/**/test_*.ts",
+    "test": "mocha -r ts-node/register ./tests/**/test_*.ts",
     "build": "webpack"
   },
   "repository": {
@@ -26,5 +26,10 @@
     "ts-node": "^4.1.0",
     "typescript": "^2.7.1",
     "webpack": "^3.11.0"
-  }
+  },
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {}
 }

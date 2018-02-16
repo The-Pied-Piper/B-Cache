@@ -4,7 +4,8 @@
   "description": "Teaching myself typescript. Come back in a few months when I have had a chance to work on it a bit more.",
   "scripts": {
     "test": "mocha -r ts-node/register ./tests/**/test_*.ts",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "tslint -p ./tsconfig.json"
   },
   "repository": {
     "type": "git",

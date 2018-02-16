@@ -1,6 +1,4 @@
-type change_callback = {
-    (newvalue: any, oldvalue: any): void
-};
+type change_callback = (newvalue: any, oldvalue: any) => void;
 
 /**
  * A Cell is the smallest unit of data in the database. A [[Row]] is made of
@@ -16,54 +14,54 @@ export class Cell {
      * Holds whether the value of this cell is nullable. This is set to true by
      * default
      */
-    private _nullable: boolean;
+    private nullable: boolean;
 
     /**
      * Holds the value of the cell. This can be of any type so long as the cell
-     * does not have the [[_is_unique]] flag set to true. If the cell is an
+     * does not have the [[unique]] flag set to true. If the cell is an
      * unique cell then the value must be of type string or number
      */
-    private _value: any;
+    private val: any;
 
     /**
      * True if the value of the cell has been changed but not yet written false
      * otherwise.
      *
      * @note: It is possible to change the value of the cell without setting the
-     *        _is_dirty flag to true by using the [[fix_value]] function.
+     *        dirty flag to true by using the [[fixval]] function.
      */
-    private _is_dirty: boolean = false;
+    private dirty: boolean = false;
 
     /**
      * Stores whether or not this cell is unique. Unique cells may only
      * store values that are strings or numbers. This is false by default
      */
-    private _is_unique: boolean;
+    private unique: boolean;
 
     /**
      * Contains the list of callbacks that will be run if the value of this
      * cell is changed
      */
-    private _change_callbacks: [change_callback, any][] = [];
+    private changeCallbacks: Array<[change_callback, any]> = [];
 
     /**
      * Creates an instance of [[Cell]].
      */
     constructor({ is_unique = false, nullable = true }: { is_unique?: boolean, nullable?: boolean } = {}) {
-        if (typeof is_unique !== 'boolean') {
+        if (typeof is_unique !== "boolean") {
             throw new Error(
                 "Argument of type '" + typeof is_unique + "' is not " +
-                "assignable to is_unique"
+                "assignable to is_unique",
             );
         }
-        if (typeof nullable !== 'boolean') {
+        if (typeof nullable !== "boolean") {
             throw new Error(
                 "Argument of type '" + typeof nullable + "' is not " +
-                "assignable to nullable"
+                "assignable to nullable",
             );
         }
-        this._is_unique = is_unique;
-        this._nullable = nullable;
+        this.unique = is_unique;
+        this.nullable = nullable;
     }
 
     /**
@@ -71,30 +69,29 @@ export class Cell {
      * write event and false otherwise
      */
     public get is_dirty(): boolean {
-        return this._is_dirty;
+        return this.dirty;
     }
 
     /**
      * Sets the [[is_dirty]] property to false.
      */
     public written() {
-        this._is_dirty = false;
+        this.dirty = false;
     }
-
 
     /**
      * Returns true if this cell is unique. Unique cells must only
      * hold number or string values and the value must be unique in their table
      */
     public get is_unique() {
-        return this._is_unique;
+        return this.unique;
     }
 
     /**
      * Returns the value stored in this cell.
      */
     public get value(): any {
-        return this._value;
+        return this.val;
     }
 
     /**
@@ -102,11 +99,11 @@ export class Cell {
      *
      */
     public set value(v: any) {
-        if (v !== this._value) {
+        if (v !== this.val) {
             this.sanitize_incoming_value(v);
-            this._is_dirty = true;
-            let oldvalue = this._value;
-            this._value = v;
+            this.dirty = true;
+            const oldvalue = this.val;
+            this.val = v;
             this._run_callbacks(oldvalue);
         }
     }
@@ -117,10 +114,10 @@ export class Cell {
      * to be written.
      */
     public fix_value(v: any): void {
-        if (v !== this._value) {
+        if (v !== this.val) {
             this.sanitize_incoming_value(v);
-            let oldvalue = this._value;
-            this._value = v;
+            const oldvalue = this.val;
+            this.val = v;
             this._run_callbacks(oldvalue);
         }
     }
@@ -130,8 +127,8 @@ export class Cell {
      * run when this cell's value is changed. It returns the _remove_callback
      * function to remove the given callback if it is not needed anymore
      */
-    public register_change(callback: change_callback, context: any = undefined): () => void {
-        this._change_callbacks.push([callback, context]);
+    public register_change(callback: change_callback, context?: any): () => void {
+        this.changeCallbacks.push([callback, context]);
         return this._remove_callback(callback);
     }
 
@@ -140,10 +137,10 @@ export class Cell {
      */
     private _remove_callback(callback: change_callback): () => void {
         return (() => {
-            for (let index = 0; index < this._change_callbacks.length; index++) {
-                const element = this._change_callbacks[index];
+            for (let index = 0; index < this.changeCallbacks.length; index++) {
+                const element = this.changeCallbacks[index];
                 if (element[0] === callback) {
-                    this._change_callbacks.splice(index, 1);
+                    this.changeCallbacks.splice(index, 1);
                     break;
                 }
             }
@@ -151,12 +148,12 @@ export class Cell {
     }
 
     /**
-     * Runs all the callbacks in the [[_change_callbacks]] list
+     * Runs all the callbacks in the [[changeCallbacks]] list
      */
     private _run_callbacks(oldvalue: any): void {
-        this._change_callbacks.forEach(element => {
-            let callback = element[0];
-            callback.call(element[1], this._value, oldvalue);
+        this.changeCallbacks.forEach((element) => {
+            const callback = element[0];
+            callback.call(element[1], this.val, oldvalue);
         });
     }
 
@@ -164,26 +161,26 @@ export class Cell {
      * Makes sure incoming values don't break any rules
      */
     private sanitize_incoming_value(v: any) {
-        //do not set back to undefined
+        // do not set back to undefined
         if (v === undefined) {
             throw new Error("Must not set value of cell to undefined");
         }
 
-        if (v === null && !this._nullable) {
+        if (v === null && !this.nullable) {
             throw new Error("Can not set value of non-nullable cell to null");
         }
 
-        //not changing types unless setting to null
-        if (this._value !== undefined && typeof v !== typeof this._value && v !== null) {
+        // not changing types unless setting to null
+        if (this.val !== undefined && typeof v !== typeof this.val && v !== null) {
             throw new Error("Must not change type of cell");
         }
 
-        //not setting unique values to non string|numbers
-        if (this.is_unique) {
-            if (typeof v !== 'string' && typeof v !== 'number') {
+        // not setting unique values to non string|numbers
+        if (this.unique) {
+            if (typeof v !== "string" && typeof v !== "number") {
                 throw new Error(
                     "An unique cell may only contain values of type " +
-                    "'string' or 'number'"
+                    "'string' or 'number'",
                 );
             }
         }

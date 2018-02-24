@@ -57,8 +57,11 @@ typings/
 # dotenv environment variables file
 .env
 
-# vs code setings
+# Visual Studio Code setings
 .vscode/
 
-#the dist foler
+# The dist folder
 dist/
+
+# Random things I am working on that arn't ready to be commited yet
+ideas/

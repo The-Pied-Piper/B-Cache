@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "description": "Teaching myself typescript. Come back in a few months when I have had a chance to work on it a bit more.",
   "scripts": {
+    "lint": "tslint -p ./tsconfig.json",
     "test": "mocha -r ts-node/register ./tests/**/test_*.ts",
+    "posttest": "npm run lint",
     "build": "webpack",
-    "lint": "tslint -p ./tsconfig.json"
+    "prebuild": "npm run test"
   },
   "repository": {
     "type": "git",

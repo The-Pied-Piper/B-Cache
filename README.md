@@ -1,5 +1,8 @@
 # BrowserDB
 
+[![CircleCI](https://circleci.com/gh/The-Pied-Piper/BrowserDB.svg?style=svg)](https://circleci.com/gh/The-Pied-Piper/BrowserDB)
+
+
 A simple to use memory based storage for complex data types. Currently only a
 graph based implementation is avalible. This works by defining vertices and
 edges and adding them to an instance of a graph.

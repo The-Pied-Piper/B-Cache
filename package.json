@@ -3,11 +3,13 @@
   "version": "0.0.1",
   "description": "Teaching myself typescript. Come back in a few months when I have had a chance to work on it a bit more.",
   "scripts": {
+    "document": "typedoc --mode modules --out ./docs ./src",
     "lint": "tslint -p ./tsconfig.json",
     "test": "mocha -r ts-node/register ./tests/**/test_*.ts",
     "posttest": "npm run lint",
     "build": "webpack",
-    "prebuild": "npm run test"
+    "prebuild": "npm run test",
+    "postbuild": "npm run document"
   },
   "repository": {
     "type": "git",
@@ -28,6 +30,7 @@
     "ts-loader": "^3.5.0",
     "ts-node": "^4.1.0",
     "tslint": "^5.9.1",
+    "typedoc": "^0.10.0",
     "typescript": "^2.7.1",
     "webpack": "^3.11.0"
   },

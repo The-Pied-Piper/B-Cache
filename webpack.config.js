@@ -1,8 +1,7 @@
 const path = require('path');
-const yargs = require('yargs');
 
 module.exports = {
-    entry: './src/column.ts',
+    entry: './src/graphs.ts',
     output: {
         filename: 'bdb.js',
         path: path.resolve(__dirname, 'dist'),

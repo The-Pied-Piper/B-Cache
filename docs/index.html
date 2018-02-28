@@ -65,8 +65,55 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="browserdb">BrowserDB</h1>
-				<p>Teaching myself typescript. Come back in a few months when I have had a chance to work on it a bit more.</p>
-				<p>In time this is meant to grow into a light weight data abstraction layer for use in a browser.</p>
+				<p><a href="https://circleci.com/gh/The-Pied-Piper/BrowserDB"><img src="https://circleci.com/gh/The-Pied-Piper/BrowserDB.svg?style=svg" alt="CircleCI"></a></p>
+				<p>A simple to use memory based storage for complex data types. Currently only a
+					graph based implementation is avalible. This works by defining vertices and
+				edges and adding them to an instance of a graph.</p>
+				<h2 id="getting-started">Getting Started</h2>
+				<p>To get started you can download or clone the repository from
+					<a href="https://github.com/The-Pied-Piper/BrowserDB">github</a>. You will also need
+				typescript in order to compile the project.</p>
+				<h3 id="prerequisites">Prerequisites</h3>
+				<p>You only need typescript to get the project up and running</p>
+				<h3 id="installing">Installing</h3>
+				<p>The easiest and simplest way to install the app is via npm and the CL interface</p>
+				<pre><code>npm <span class="hljs-keyword">install</span>
+</code></pre><p>This will install typescript for compiling the app as well as a few other dependencies for testing (mocha, chia, ts-node), building (webpack and ts-loader),documentation (typedoc) and linting (tslint)</p>
+				<h2 id="running-the-tests">Running the tests</h2>
+				<p>To run the tests will additionally require <a href="https://mochajs.org/">mocha</a> and
+					<a href="http://chaijs.com/">chai</a> and their typing information as well as ts-node. If you
+					installed the app as noted above then you are already all set otherwise these
+				can be installed via the CL</p>
+				<pre><code>npm install --save-dev mocha chai ts-<span class="hljs-keyword">node</span> <span class="hljs-title">@types</span>/chai @types/mocha
+</code></pre><p>You can now run the tests!</p>
+				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span></span>
+</code></pre><p>Once the tests run you will get an annoying error about missing tslint. we use this to test compliance with the style guide. to fix the message read on.</p>
+				<h3 id="coding-style-tests">Coding style tests</h3>
+				<p>We use the  tslint recomended style guide for coding. For more information you can visit the <a href="https://palantir.github.io/tslint/">tslint</a> website. The package can
+				be installed using npm</p>
+				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> tslint
+</code></pre><p>you can then test that you are following the style by running</p>
+				<pre><code><span class="hljs-built_in">npm</span> lint
+</code></pre><h2 id="deployment">Deployment</h2>
+				<p>This package can be used both in a browser as a umd and on Node.js. To build the package you will need a few more packages. If you installed the application as noted above then you are already all set otherwise you will additionally need to install webpack as well as the ts-loaded webpack plugin. This is easily done via npm and the CL interface.</p>
+				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack ts-loader
+</code></pre><p>You can now build the package using</p>
+				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+</code></pre><p>This will build the package for you thought you will get an annoying error at the end mentioning that the documentation could not be generated. To fix this install typedoc</p>
+				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> typedoc
+</code></pre><h2 id="versioning">Versioning</h2>
+				<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/The-Pied-Piper/BrowserDB/tags">tags on this repository</a>.</p>
+				<h2 id="author">Author</h2>
+				<ul>
+					<li><strong>Umar Khan</strong> a.k.a <a href="https://github.com/The-Pied-Piper">The-Pied-Piper</a></li>
+				</ul>
+				<p>See also the list of <a href="https://github.com/The-Pied-Piper/BrowserDB/graphs/contributors">contributors</a> who participated in this project.</p>
+				<h2 id="license">License</h2>
+				<p>This project is licensed under the MIT License - see the <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/master/LICENSE">LICENSE.md</a> file for details</p>
+				<h2 id="acknowledgments">Acknowledgments</h2>
+				<ul>
+					<li>This README.md file was generated using the template at <a href="https://gist.github.com/PurpleBooth/109311bb0361f32d87a2">https://gist.github.com/PurpleBooth/109311bb0361f32d87a2</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">

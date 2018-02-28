@@ -1,6 +1,6 @@
 {
   "name": "browserdb",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Teaching myself typescript. Come back in a few months when I have had a chance to work on it a bit more.",
   "scripts": {
     "document": "typedoc --mode modules --out ./docs ./src",

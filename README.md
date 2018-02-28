@@ -31,7 +31,7 @@ installed the app as noted above then you are already all set otherwise these
 can be installed via the CL
 
 ```
-npm install --save-dev mocha chai ts-node "@types/chai @types/mocha
+npm install --save-dev mocha chai ts-node @types/chai @types/mocha
 ```
 
 You can now run the tests!
@@ -79,7 +79,7 @@ See also the list of [contributors](https://github.com/The-Pied-Piper/BrowserDB/
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/The-Pied-Piper/BrowserDB/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 

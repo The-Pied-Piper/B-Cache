@@ -13,6 +13,29 @@ npm install B-Cache
 
 ## Usage
 
+Three copies are provided for convenience. a minified browser compatible version, es6 version of the library and an es5 version.
+
+To use the browser version simply include `b-cache/dist/bcache.min.js` in a script tag and use it by referring to the class you need
+```javascript
+var Vertex = bcache.Vertex;
+var Edge = bcache.Edge;
+var Graph = bcache.Graph;
+```
+
+for the es5 lib version you can use
+```javascript
+let Vertex = require("b-cache/lib-esm/index").Vector;
+let Edge = require("b-cache/lib-esm/index").Edge;
+let Graph = require("b-cache/lib-esm/index").Graph;
+```
+
+And for es6 (assuming modules support)
+```javascript
+import { Vertex } from "b-cache/lib-esm/index";
+import { Edge } from "b-cache/lib-esm/index";
+import { Graph } from "b-cache/lib-esm/index";
+```
+
 Below is a simple use case writen in typescript. You can find other examples writen in both javascript and typescript in the [examples folder](https://github.com/The-Pied-Piper/B-Cache/tree/master/examples) of this repository.
 ```typescript
 

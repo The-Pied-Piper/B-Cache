@@ -3,13 +3,13 @@ const webpack = require("webpack");
 
 module.exports = {
     entry: {
-        "bdb": "./src/index.ts",
-        "bdb.min": "./src/index.ts"
+        "bcache": "./src/index.ts",
+        "bcache.min": "./src/index.ts"
     },
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'bdb',
+        library: 'bcache',
         libraryTarget: 'umd',
         umdNamedDefine: true
     },

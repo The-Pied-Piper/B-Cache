@@ -63,5 +63,9 @@ typings/
 # The dist folder
 dist/
 
+# the lib folders
+lib/
+lib-esm/
+
 # Random things I am working on that arn't ready to be commited yet
 ideas/

@@ -69,6 +69,19 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A graph is a collection of vertices and edges (maps to other vertices). It
+							exposes 2 functions: add_vertex and get_vertex that do as their names
+						suggest, add and retrieve vertices to and from the graph respectively.</p>
+					</div>
+					<pre><code class="lang-typescript">graph = <span class="hljs-keyword">new</span> Graph();
+graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">// Adds the 3 vertices to the graph</span>
+<span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">1</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">"testvertex"</span>});)  <span class="hljs-comment">// Vertex with id 1 and type "testvertex"</span>
+</code></pre>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -87,20 +100,21 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#vertexindex" class="tsd-kind-icon">vertex<wbr>Index</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
+						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_graphs_.graph.html#vertices" class="tsd-kind-icon">vertices</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#vertices" class="tsd-kind-icon">vertices</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#addvertex" class="tsd-kind-icon">add<wbr>Vertex</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#getvertex" class="tsd-kind-icon">get<wbr>Vertex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#add_vertex" class="tsd-kind-icon">add_<wbr>vertex</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#get_storage_index" class="tsd-kind-icon">get_<wbr>storage_<wbr>index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#get_vertex" class="tsd-kind-icon">get_<wbr>vertex</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#relationship" class="tsd-kind-icon">relationship</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#set_edges" class="tsd-kind-icon">set_<wbr>edges</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#test_add_vertex" class="tsd-kind-icon">test_<wbr>add_<wbr>vertex</a></li>
 							</ul>
 						</section>
 					</div>
@@ -114,7 +128,7 @@
 					<div class="tsd-signature tsd-kind-icon">vertex<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L12">graphs.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L23">graphs.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -134,19 +148,19 @@
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group ">
+			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Accessors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class tsd-is-private">
 					<a name="vertices" class="tsd-anchor"></a>
-					<h3>vertices</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> vertices</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class tsd-is-private">
 						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> vertices<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L45">graphs.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L54">graphs.ts:54</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -162,16 +176,16 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="addvertex" class="tsd-anchor"></a>
-					<h3>add<wbr>Vertex</h3>
+					<a name="add_vertex" class="tsd-anchor"></a>
+					<h3>add_<wbr>vertex</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Vertex<span class="tsd-signature-symbol">(</span>vertex<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add_<wbr>vertex<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L26">graphs.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L38">graphs.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -183,46 +197,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>vertex: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getvertex" class="tsd-anchor"></a>
-					<h3>get<wbr>Vertex</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Vertex<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L17">graphs.ts:17</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the vertex with the given id and type</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter">
-											<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-										</li>
-										<li class="tsd-parameter">
-											<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -236,7 +214,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L63">graphs.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L72">graphs.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -265,6 +243,43 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="get_vertex" class="tsd-anchor"></a>
+					<h3>get_<wbr>vertex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get_<wbr>vertex<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L29">graphs.ts:29</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the vertex with the given id and type. If no type is given then
+									null is assumed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
 					<a name="relationship" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> relationship</h3>
@@ -275,13 +290,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L94">graphs.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L105">graphs.ts:105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Returns an object with a getter funciton for returning all the vertices
-									that the given vertex is connected to by the given <a href="_edges_.edge.html">Edge</a> rule</p>
+										that the given vertex is connected to by the given <a href="_edges_.edge.html">Edge</a> rule. If no
+										matches are found and multiple is flase the null is returned else an
+									empty array and returned</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -298,18 +315,20 @@
 								<li class="tsd-parameter">
 									<h5>get<span class="tsd-signature-symbol">: </span>function</h5>
 									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol"> | </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></li>
+										<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol"> | </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L96">graphs.ts:96</a></li>
+													<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L107">graphs.ts:107</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-returns-title">Returns <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a>
 												<span class="tsd-signature-symbol"> | </span>
 												<a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span>
+												<span class="tsd-signature-symbol"> | </span>
+												<span class="tsd-signature-type">null</span>
 											</h4>
 										</li>
 								</ul>        </li>
@@ -327,7 +346,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/5b23212/src/graphs.ts#L75">graphs.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L84">graphs.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -340,6 +359,35 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>vertex: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="test_add_vertex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> test_<wbr>add_<wbr>vertex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">test_<wbr>add_<wbr>vertex<span class="tsd-signature-symbol">(</span>vertices<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/b624a5a/src/graphs.ts#L127">graphs.ts:127</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Used to make sure that the vertices added to the graph are valid. It
+									will throw an error if any of the vertices have a problem.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertices: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -361,6 +409,9 @@
 						<a href="../modules/_graphs_.html">"graphs"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="../modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_vertices_.html">"vertices"</a>
 					</li>
 				</ul>
@@ -375,23 +426,26 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#vertexindex" class="tsd-kind-icon">vertex<wbr>Index</a>
 							</li>
-							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#vertices" class="tsd-kind-icon">vertices</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_graphs_.graph.html#addvertex" class="tsd-kind-icon">add<wbr>Vertex</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_graphs_.graph.html#getvertex" class="tsd-kind-icon">get<wbr>Vertex</a>
+								<a href="_graphs_.graph.html#add_vertex" class="tsd-kind-icon">add_<wbr>vertex</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#get_storage_index" class="tsd-kind-icon">get_<wbr>storage_<wbr>index</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_graphs_.graph.html#get_vertex" class="tsd-kind-icon">get_<wbr>vertex</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#relationship" class="tsd-kind-icon">relationship</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#set_edges" class="tsd-kind-icon">set_<wbr>edges</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_graphs_.graph.html#test_add_vertex" class="tsd-kind-icon">test_<wbr>add_<wbr>vertex</a>
 							</li>
 						</ul>
 					</li>

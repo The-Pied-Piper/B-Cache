@@ -64,21 +64,81 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="browserdb">BrowserDB</h1>
+				<h1 id="b-cache">B-Cache</h1>
 				<p><a href="https://circleci.com/gh/The-Pied-Piper/BrowserDB"><img src="https://circleci.com/gh/The-Pied-Piper/BrowserDB.svg?style=svg" alt="CircleCI"></a></p>
-				<p>A simple to use memory based storage for complex data types. Currently only a
-					graph based implementation is avalible. This works by defining vertices and
-				edges and adding them to an instance of a graph.</p>
+				<p>A simple to use memory based storage for complex data types. Currently only a graph like implementation is avalible. This works by defining vertices and edges and adding them to an instance of a graph. At its heart this is a data abstraction layer that makes it simple to hold complex data types that may or may not be related in some way.</p>
+				<h2 id="installation">Installation</h2>
+				<p>To install the package for use in your own project just use npm</p>
+				<pre><code>npm <span class="hljs-keyword">install</span> B-<span class="hljs-keyword">Cache</span>
+</code></pre><h2 id="usage">Usage</h2>
+				<p>Below is a simple use case writen in typescript. You can find other examples writen in both javascript and typescript in the <a href="https://github.com/The-Pied-Piper/B-Cache/tree/master/examples">examples folder</a> of this repository.</p>
+				<pre><code class="lang-typescript">
+<span class="hljs-comment">// First lets extend vertex with our own class.</span>
+
+<span class="hljs-keyword">class</span> Employee <span class="hljs-keyword">extends</span> Vertex {
+
+    <span class="hljs-comment">// This edge defines a coworker as someone who works in the same team</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> coworkers = <span class="hljs-keyword">new</span> Edge(
+        <span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">from</span>, to</span>) =&gt;</span> <span class="hljs-keyword">from</span>.team === to.team &amp;&amp; <span class="hljs-keyword">from</span> !== to,
+    );
+
+    <span class="hljs-comment">/** An employee's manager is a member of the team the employee works in who
+     * has the isManager designation. The false passed in the second argument
+     * tells the graph that this will not return an Array of vertices but rather
+     * a single vertex.
+     */</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> manager = <span class="hljs-keyword">new</span> Edge(
+        <span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">from</span>, to</span>) =&gt;</span> <span class="hljs-keyword">from</span>.team === to.team &amp;&amp; to.isManager,
+        <span class="hljs-literal">false</span>,
+    );
+
+    <span class="hljs-comment">// Define our instance attributes</span>
+    <span class="hljs-keyword">public</span> team: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">public</span> isManager: <span class="hljs-built_in">boolean</span>;
+
+    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">id: <span class="hljs-built_in">number</span> | <span class="hljs-built_in">string</span>, team: <span class="hljs-built_in">string</span>, name: <span class="hljs-built_in">string</span>, isManager: <span class="hljs-built_in">boolean</span></span>) {
+        <span class="hljs-keyword">super</span>(id);
+        <span class="hljs-keyword">this</span>.team = team;
+        <span class="hljs-keyword">this</span>.name = name;
+        <span class="hljs-keyword">this</span>.isManager = isManager;
+    }
+}
+
+<span class="hljs-comment">// Create a new graph</span>
+<span class="hljs-keyword">const</span> graph = <span class="hljs-keyword">new</span> Graph();
+
+<span class="hljs-comment">// Create some instances of our Employee Vertex</span>
+<span class="hljs-keyword">const</span> employee1 = <span class="hljs-keyword">new</span> Employee(<span class="hljs-number">1</span>, <span class="hljs-string">"marketing"</span>, <span class="hljs-string">"Akbar Koya"</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-keyword">const</span> employee2 = <span class="hljs-keyword">new</span> Employee(<span class="hljs-number">2</span>, <span class="hljs-string">"marketing"</span>, <span class="hljs-string">"Ann Mathews"</span>, <span class="hljs-literal">false</span>);
+<span class="hljs-keyword">const</span> employee3 = <span class="hljs-keyword">new</span> Employee(<span class="hljs-number">3</span>, <span class="hljs-string">"marketing"</span>, <span class="hljs-string">"David Boyle"</span>, <span class="hljs-literal">true</span>);
+
+<span class="hljs-comment">// Add the Employees to the graph</span>
+graph.add_vertex(employee1, employee2, employee3);
+
+<span class="hljs-comment">// The graph automatically populates the edges for us.</span>
+<span class="hljs-built_in">console</span>.log(employee1.coworkers);    <span class="hljs-comment">// [employee2, employee3]    Notice that this is an Array</span>
+<span class="hljs-built_in">console</span>.log(employee1.manager.name);    <span class="hljs-comment">// David Boyle    Notice that manager is a single edge</span>
+
+<span class="hljs-comment">// We can also retrieve individual edges from the graph</span>
+<span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2</span>}).name)    <span class="hljs-comment">// Ann Mathews</span>
+
+</code></pre>
+				<p>It is possible and often useful to have multiple sub-classes of Vertex and store them in the same graph. Since it is conceivable that in this case vertices might have the same id we can also specify a vertex type by passing a second string argument to the Vertex super class.</p>
+				<pre><code class="lang-typescript"><span class="hljs-keyword">super</span>(id, <span class="hljs-string">"employee"</span>);
+</code></pre>
+				<p>In this way we can prevent collisions between our Employee vertices and, lets say, Department vertices which we want to store in the same graph so that we can define edges between them. By specifying the type of the vertices we can now store a Department with id 1 in the same graph as an employee also with id 1 as long as their vertex type is different.</p>
+				<p>To retrieve a vertex with from the graph which has a defined type we must also pass the type to the get_vertex function</p>
+				<pre><code class="lang-typescript"><span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2.</span> <span class="hljs-keyword">type</span>: <span class="hljs-string">"employee"</span>}).name)    <span class="hljs-comment">// Ann Mathewsh.</span>
+</code></pre>
 				<h2 id="getting-started">Getting Started</h2>
-				<p>To get started you can download or clone the repository from
-					<a href="https://github.com/The-Pied-Piper/BrowserDB">github</a>. You will also need
-				typescript in order to compile the project.</p>
+				<p>To get started you can download or clone the repository from <a href="https://github.com/The-Pied-Piper/B-Cache">github</a>. You will also need typescript in order to compile the project.</p>
 				<h3 id="prerequisites">Prerequisites</h3>
 				<p>You only need typescript to get the project up and running</p>
 				<h3 id="installing">Installing</h3>
-				<p>The easiest and simplest way to install the app is via npm and the CL interface</p>
+				<p>The easiest and simplest way to install the app is via npm and the CL interface. Navigte over to the project directory then call</p>
 				<pre><code>npm <span class="hljs-keyword">install</span>
-</code></pre><p>This will install typescript for compiling the app as well as a few other dependencies for testing (mocha, chia, ts-node), building (webpack and ts-loader),documentation (typedoc) and linting (tslint)</p>
+</code></pre><p>This will install typescript for compiling the app as well as a few other dependencies for testing (mocha, chia, ts-node), building (webpack and ts-loader), documentation (typedoc) and linting (tslint)</p>
 				<h2 id="running-the-tests">Running the tests</h2>
 				<p>To run the tests will additionally require <a href="https://mochajs.org/">mocha</a> and
 					<a href="http://chaijs.com/">chai</a> and their typing information as well as ts-node. If you
@@ -89,27 +149,26 @@
 				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span></span>
 </code></pre><p>Once the tests run you will get an annoying error about missing tslint. we use this to test compliance with the style guide. to fix the message read on.</p>
 				<h3 id="coding-style-tests">Coding style tests</h3>
-				<p>We use the  tslint recomended style guide for coding. For more information you can visit the <a href="https://palantir.github.io/tslint/">tslint</a> website. The package can
-				be installed using npm</p>
+				<p>We use the  tslint recomended style guide for coding. For more information you can visit the <a href="https://palantir.github.io/tslint/">tslint</a> website. The package can be installed using npm</p>
 				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> tslint
 </code></pre><p>you can then test that you are following the style by running</p>
 				<pre><code><span class="hljs-built_in">npm</span> lint
 </code></pre><h2 id="deployment">Deployment</h2>
-				<p>This package can be used both in a browser as a umd and on Node.js. To build the package you will need a few more packages. If you installed the application as noted above then you are already all set otherwise you will additionally need to install webpack as well as the ts-loaded webpack plugin. This is easily done via npm and the CL interface.</p>
+				<p>This package can be used both in a browser and on Node.js. To build the package you will need a few more packages. If you installed the application as noted above then you are already all set otherwise you will additionally need to install webpack as well as the ts-loaded webpack plugin. This is easily done via npm and the CL interface.</p>
 				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack ts-loader
 </code></pre><p>You can now build the package using</p>
 				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
-</code></pre><p>This will build the package for you thought you will get an annoying error at the end mentioning that the documentation could not be generated. To fix this install typedoc</p>
+</code></pre><p>This will build the package for you, though, you will get an annoying error at the end mentioning that the documentation could not be generated. To fix this install typedoc</p>
 				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> typedoc
 </code></pre><h2 id="versioning">Versioning</h2>
-				<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/The-Pied-Piper/BrowserDB/tags">tags on this repository</a>.</p>
+				<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/The-Pied-Piper/B-Cache/tags">tags on this repository</a>.</p>
 				<h2 id="author">Author</h2>
 				<ul>
 					<li><strong>Umar Khan</strong> a.k.a <a href="https://github.com/The-Pied-Piper">The-Pied-Piper</a></li>
 				</ul>
-				<p>See also the list of <a href="https://github.com/The-Pied-Piper/BrowserDB/graphs/contributors">contributors</a> who participated in this project.</p>
+				<p>See also the list of <a href="https://github.com/The-Pied-Piper/B-Cache/graphs/contributors">contributors</a> who participated in this project.</p>
 				<h2 id="license">License</h2>
-				<p>This project is licensed under the MIT License - see the <a href="https://github.com/The-Pied-Piper/BrowserDB/blob/master/LICENSE">LICENSE.md</a> file for details</p>
+				<p>This project is licensed under the MIT License - see the <a href="https://github.com/The-Pied-Piper/B-Cache/blob/master/LICENSE">LICENSE.md</a> file for details</p>
 				<h2 id="acknowledgments">Acknowledgments</h2>
 				<ul>
 					<li>This README.md file was generated using the template at <a href="https://gist.github.com/PurpleBooth/109311bb0361f32d87a2">https://gist.github.com/PurpleBooth/109311bb0361f32d87a2</a></li>
@@ -127,6 +186,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_graphs_.html">"graphs"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_vertices_.html">"vertices"</a>

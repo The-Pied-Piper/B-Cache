@@ -1,0 +1,12 @@
+.*
+**/tsconfig.json
+**/webpack.config.js
+node_modules
+src
+examples
+docs
+.vscode
+.circleci
+ideas
+tests
+tslint.json

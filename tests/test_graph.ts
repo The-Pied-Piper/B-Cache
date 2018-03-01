@@ -8,12 +8,12 @@ import { Vertex } from "../src/vertices";
 
 describe("Graph", () => {
 
-    // Test the addVertex function
-    describe("addVertex()", () => {
+    // Test the add_vertex function
+    describe("add_vertex()", () => {
         it("Should work with an empty graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new Vertex(12, "test");
-            graph.addVertex(vertex1);
+            graph.add_vertex(vertex1);
             const vertices: Vertex[] = [];
             for (const key in graph.vertexIndex) {
                 if (graph.vertexIndex.hasOwnProperty(key)) {
@@ -27,8 +27,8 @@ describe("Graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new Vertex(12, "test");
             const vertex2 = new Vertex(13, "test");
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
             const vertices: Vertex[] = [];
             for (const key in graph.vertexIndex) {
                 if (graph.vertexIndex.hasOwnProperty(key)) {
@@ -41,7 +41,7 @@ describe("Graph", () => {
         it("Should work with vertices of undefined type", () => {
             const graph = new Graph() as any;
             const vertex1 = new Vertex(12);
-            graph.addVertex(vertex1);
+            graph.add_vertex(vertex1);
             const vertices: Vertex[] = [];
             for (const key in graph.vertexIndex) {
                 if (graph.vertexIndex.hasOwnProperty(key)) {
@@ -55,8 +55,8 @@ describe("Graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(12, "test2");
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
             const vertices: Vertex[] = [];
             for (const key in graph.vertexIndex) {
                 if (graph.vertexIndex.hasOwnProperty(key)) {
@@ -70,8 +70,8 @@ describe("Graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(13, "test1");
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
             const vertices: Vertex[] = [];
             for (const key in graph.vertexIndex) {
                 if (graph.vertexIndex.hasOwnProperty(key)) {
@@ -85,20 +85,20 @@ describe("Graph", () => {
             const graph = new Graph();
             const vertex1 = new Vertex(12, "test");
             const vertex2 = new Vertex(12, "test");
-            graph.addVertex(vertex1);
-            const test = () => { graph.addVertex(vertex2); };
+            graph.add_vertex(vertex1);
+            const test = () => { graph.add_vertex(vertex2); };
             expect(test).to.throw(
                 Error,
-                "A vertex with that id and type already exists in the graph",
+                "A vertex with id '12' and type 'test' already exists in the graph",
             );
         });
         it("Should fail if the argument is not a vertex", () => {
             const graph = new Graph();
             const vertex1 = { id: 1, type: "mytype" } as any;
-            const test = () => { graph.addVertex(vertex1); };
+            const test = () => { graph.add_vertex(vertex1); };
             expect(test).to.throw(
                 Error,
-                "Argument must be a vertex",
+                "Arguments must be a vertex",
             );
         });
         it("Should add the edge", () => {
@@ -107,79 +107,133 @@ describe("Graph", () => {
             }
             const graph = new Graph();
             const vertex1 = new DummyVertex(12, "test");
-            graph.addVertex(vertex1);
+            graph.add_vertex(vertex1);
             expect(() => { const relation = vertex1.ed1; }).to.throw(Error, "here");
+        });
+        it("Should add multiple vertices at once", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+            }
+            const graph = new Graph() as any;
+            const vertex1 = new DummyVertex(12, "test");
+            const vertex2 = new DummyVertex(13, "test");
+            const vertex3 = new DummyVertex(14, "test");
+            graph.add_vertex(vertex1, vertex2, vertex3);
+            expect(graph.vertices).to.eql([vertex1, vertex2, vertex3]);
+        });
+        it("Should throw an error if any of the arguments is not a vertex", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(12, "test");
+            const vertex2 = {id: 13, type: "test"} as any;
+            const vertex3 = new DummyVertex(14, "test");
+            const test = () => { graph.add_vertex(vertex1, vertex2, vertex3); };
+            expect(test).to.throw(
+                Error,
+                "Arguments must be a vertex",
+            );
+        });
+        it("Should throw an error if any of the arguments have a match in the graph", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(12, "test");
+            const vertex2 = new DummyVertex(12, "test");
+            const vertex3 = new DummyVertex(14, "test");
+            graph.add_vertex(vertex1);
+            const test = () => { graph.add_vertex(vertex2, vertex3); };
+            expect(test).to.throw(
+                Error,
+                "A vertex with id '12' and type 'test' already exists in the graph",
+            );
+        });
+        it("Should throw an error if any of the arguments match each other", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(12, "test");
+            const vertex2 = new DummyVertex(12, "test");
+            const vertex3 = new DummyVertex(14, "test");
+            const test = () => { graph.add_vertex(vertex1, vertex3, vertex2); };
+            expect(test).to.throw(
+                Error,
+                "Arguments have duplicate type and id",
+            );
         });
     });
 
-    // Test the getVertex function
-    describe("getVertex()", () => {
+    // Test the get_vertex function
+    describe("get_vertex()", () => {
         it("Should return the vertex matching the arguments", () => {
             const graph = new Graph();
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(12, "test2");
             const vertex3 = new Vertex(13, "test1");
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
-            graph.addVertex(vertex3);
-            expect(graph.getVertex({ id: 12, type: "test2" })).to.equal(vertex2);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            graph.add_vertex(vertex3);
+            expect(graph.get_vertex({ id: 12, type: "test2" })).to.equal(vertex2);
         });
         it("Should work with vertices of undefined type", () => {
             const graph = new Graph();
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(14, "test1");
             const vertex3 = new Vertex(13);
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
-            graph.addVertex(vertex3);
-            expect(graph.getVertex({ id: 13, type: undefined })).to.equal(vertex3);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            graph.add_vertex(vertex3);
+            expect(graph.get_vertex({ id: 13, type: undefined })).to.equal(vertex3);
         });
         it("Should set type to undefined by default", () => {
             const graph = new Graph();
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(14, "test1");
             const vertex3 = new Vertex(13);
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
-            graph.addVertex(vertex3);
-            expect(graph.getVertex({ id: 13 })).to.equal(vertex3);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            graph.add_vertex(vertex3);
+            expect(graph.get_vertex({ id: 13 })).to.equal(vertex3);
         });
         it("Should return undefined if no matching ids exist", () => {
             const graph = new Graph();
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(14, "test1");
             const vertex3 = new Vertex(13);
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
-            graph.addVertex(vertex3);
-            expect(graph.getVertex({ id: 15 })).to.equal(undefined);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            graph.add_vertex(vertex3);
+            expect(graph.get_vertex({ id: 15 })).to.equal(undefined);
         });
         it("Should return undefined if no matching types exist", () => {
             const graph = new Graph();
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(14, "test1");
             const vertex3 = new Vertex(13);
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
-            graph.addVertex(vertex3);
-            expect(graph.getVertex({ id: 12, type: "test3" })).to.equal(undefined);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            graph.add_vertex(vertex3);
+            expect(graph.get_vertex({ id: 12, type: "test3" })).to.equal(undefined);
         });
     });
 
     // Test the vertices property
     describe("vertices", () => {
         it("Should return an array of vertices in the graph", () => {
-            const graph = new Graph();
+            const graph = new Graph() as any;
             const vertex1 = new Vertex(12, "test1");
             const vertex2 = new Vertex(14, "test1");
             const vertex3 = new Vertex(13);
-            graph.addVertex(vertex1);
-            graph.addVertex(vertex2);
-            graph.addVertex(vertex3);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            graph.add_vertex(vertex3);
             expect(graph.vertices).to.eql([vertex1, vertex2, vertex3]);
         });
         it("Should return an empty array when the graph is empty", () => {
-            const graph = new Graph();
+            const graph = new Graph() as any;
             expect(graph.vertices).to.eql([]);
         });
     });
@@ -248,7 +302,7 @@ describe("Graph", () => {
             const rel = graph.relationship(DummyVertex.ed1, vertex1);
             expect(rel.get()).to.eql([vertex1, vertex2]);
         });
-        it("Should make getter return a sigle vertex if multiple is false", () => {
+        it("Should make getter return a single vertex if multiple is false", () => {
             class DummyVertex extends Vertex {
                 public static ed1 = new Edge((v1, v2) => v1 !== v2, false);
             }
@@ -261,6 +315,20 @@ describe("Graph", () => {
             graph.vertexIndex[index2] = vertex2;
             const rel = graph.relationship(DummyVertex.ed1, vertex1);
             expect(rel.get()).to.eql(vertex2);
+        });
+        it("Should make getter return null if multiple is false and nothing matches", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((v1, v2) => false, false);
+            }
+            const graph = new Graph() as any;
+            const vertex1 = new DummyVertex(12);
+            const vertex2 = new DummyVertex(13);
+            const index1 = graph.get_storage_index(vertex1.id, vertex1.type);
+            graph.vertexIndex[index1] = vertex1;
+            const index2 = graph.get_storage_index(vertex2.id, vertex2.type);
+            graph.vertexIndex[index2] = vertex2;
+            const rel = graph.relationship(DummyVertex.ed1, vertex1);
+            expect(rel.get()).to.eql(null);
         });
     });
 });

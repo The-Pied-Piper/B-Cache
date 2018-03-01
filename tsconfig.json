@@ -3,7 +3,7 @@
         /* Basic Options */
         "target": "es5",
         "module": "commonjs",
-        "declaration": false,
+        "declaration": true,
         "sourceMap": true,
         /* Strict Type-Checking Options */
         "strict": true,
@@ -18,7 +18,9 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         /* Experimental Options */
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "lib": ["dom", "es2015"],
+        "outDir": "lib"
     },
     "include": [
         "src/**/*.ts"

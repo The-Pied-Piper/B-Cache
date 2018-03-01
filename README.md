@@ -98,7 +98,7 @@ In this way we can prevent collisions between our Employee vertices and, lets sa
 
 To retrieve a vertex with from the graph which has a defined type we must also pass the type to the get_vertex function
 ```typescript
-console.log(graph.get_vertex({id: 2. type: "employee"}).name)    // Ann Mathewsh.
+console.log(graph.get_vertex({id: 2. type: "employee"}).name)    // Ann Mathews.
 ```
 
 ## Getting Started

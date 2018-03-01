@@ -1,6 +1,6 @@
-import { Edge } from "../../lib/edges";
-import { Graph } from "../../lib/graphs";
-import { Vertex } from "../../lib/vertices";
+import { Vertex } from "b-cache/lib-esm/index";
+import { Edge } from "b-cache/lib-esm/index";
+import { Graph } from "b-cache/lib-esm/index";
 
 /**
  * This class defines a Tree Vertex

@@ -24,12 +24,12 @@ var Graph = bcache.Graph;
 
 for the es5 lib version you can use
 ```javascript
-let Vertex = require("b-cache/lib-esm/index").Vector;
-let Edge = require("b-cache/lib-esm/index").Edge;
-let Graph = require("b-cache/lib-esm/index").Graph;
+let Vertex = require("b-cache/lib/index").Vector;
+let Edge = require("b-cache/lib/index").Edge;
+let Graph = require("b-cache/lib/index").Graph;
 ```
 
-And for es6 (assuming modules support)
+And for es6
 ```javascript
 import { Vertex } from "b-cache/lib-esm/index";
 import { Edge } from "b-cache/lib-esm/index";

@@ -11,9 +11,8 @@
     "build": "tsc && tsc -m es6 --outDir lib-esm && webpack",
     "prebuild": "npm run clean && npm run test",
     "postbuild": "npm run document && shx echo \"\"  > ./docs/.nojekyll",
-    "version": "npm run build",
-    "postversion": "git push && git push --tags",
-    "prepare": "npm run build"
+    "version": "npm run build && git add -A docs",
+    "postversion": "git push && git push --tags && npm publish"
   },
   "repository": {
     "type": "git",

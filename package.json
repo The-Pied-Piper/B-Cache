@@ -18,7 +18,12 @@
     "type": "git",
     "url": "git+https://github.com/The-Pied-Piper/B-Cache.git"
   },
-  "keywords": [],
+  "keywords": [
+    "graph",
+    "data-abstraction",
+    "browser-cache",
+    "typescript"
+  ],
   "author": "The-Pied-Piper",
   "license": "MIT",
   "bugs": {

@@ -43,7 +43,9 @@ Below is a simple use case writen in typescript. You can find other examples wri
 
 class Employee extends Vertex {
 
-    // This edge defines a coworker as someone who works in the same team
+    /**
+     * This edge defines a coworker as someone who works in the same team
+     */
     public static coworkers = new Edge(
         (from, to) => from.team === to.team && from !== to,
     );

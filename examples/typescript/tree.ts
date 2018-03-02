@@ -1,6 +1,6 @@
-import { Vertex } from "b-cache/lib-esm/index";
-import { Edge } from "b-cache/lib-esm/index";
-import { Graph } from "b-cache/lib-esm/index";
+import { Vertex } from "../../lib/index";
+import { Edge } from "../../lib/index";
+import { Graph } from "../../lib/index";
 
 /**
  * This class defines a Tree Vertex
@@ -54,7 +54,7 @@ class TreeNode extends Vertex {
      * Recursively looks through the child for the given id. If no id matches
      * then it returns undefined
      */
-    public find(id: number): TreeNode {
+    public find(id: number): TreeNode|undefined {
         let result;
         if (this.id === id) {
             result = this;

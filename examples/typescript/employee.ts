@@ -1,10 +1,12 @@
-import { Vertex } from "b-cache/lib-esm/index";
-import { Edge } from "b-cache/lib-esm/index";
-import { Graph } from "b-cache/lib-esm/index";
+import { Vertex } from "../../lib/index";
+import { Edge } from "../../lib/index";
+import { Graph } from "../../lib/index";
 
 class Employee extends Vertex {
 
-    // This edge defines a coworker as someone who works in the same team
+    /**
+     * This edge defines a coworker as someone who works in the same team
+     */
     public static coworkers = new Edge(
         (from, to) => from.team === to.team && from !== to,
     );

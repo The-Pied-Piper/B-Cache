@@ -93,7 +93,9 @@
 
 <span class="hljs-keyword">class</span> Employee <span class="hljs-keyword">extends</span> Vertex {
 
-    <span class="hljs-comment">// This edge defines a coworker as someone who works in the same team</span>
+    <span class="hljs-comment">/**
+     * This edge defines a coworker as someone who works in the same team
+     */</span>
     <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> coworkers = <span class="hljs-keyword">new</span> Edge(
         <span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">from</span>, to</span>) =&gt;</span> <span class="hljs-keyword">from</span>.team === to.team &amp;&amp; <span class="hljs-keyword">from</span> !== to,
     );

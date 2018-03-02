@@ -110,11 +110,15 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#add_vertex" class="tsd-kind-icon">add_<wbr>vertex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#check_argument_duplicates" class="tsd-kind-icon">check_<wbr>argument_<wbr>duplicates</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#check_exist_in_graph" class="tsd-kind-icon">check_<wbr>exist_<wbr>in_<wbr>graph</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#check_is_vertex" class="tsd-kind-icon">check_<wbr>is_<wbr>vertex</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#check_no_graph_duplicates" class="tsd-kind-icon">check_<wbr>no_<wbr>graph_<wbr>duplicates</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#del_vertex" class="tsd-kind-icon">del_<wbr>vertex</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#get_storage_index" class="tsd-kind-icon">get_<wbr>storage_<wbr>index</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_graphs_.graph.html#get_vertex" class="tsd-kind-icon">get_<wbr>vertex</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#relationship" class="tsd-kind-icon">relationship</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#set_edges" class="tsd-kind-icon">set_<wbr>edges</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="_graphs_.graph.html#test_add_vertex" class="tsd-kind-icon">test_<wbr>add_<wbr>vertex</a></li>
 							</ul>
 						</section>
 					</div>
@@ -128,7 +132,7 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 					<div class="tsd-signature tsd-kind-icon">vertex<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L23">graphs.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L23">graphs.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,7 +164,7 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L54">graphs.ts:54</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L81">graphs.ts:81</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -185,13 +189,161 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L38">graphs.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L38">graphs.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Adds the given verted to the graph. If a vertex with this combination of
 									id and type already exists then it throws an error instead.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="check_argument_duplicates" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check_<wbr>argument_<wbr>duplicates</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">check_<wbr>argument_<wbr>duplicates<span class="tsd-signature-symbol">(</span>vertices<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L205">graphs.ts:205</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A helper function for argument sanitisation. This funciton makes sure
+										that none of its arguments have the same id and type. If one is found it
+									will throw an error.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertices: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="check_exist_in_graph" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check_<wbr>exist_<wbr>in_<wbr>graph</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">check_<wbr>exist_<wbr>in_<wbr>graph<span class="tsd-signature-symbol">(</span>vertices<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L185">graphs.ts:185</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A helper function for argument sanitisation. This funciton makes sure
+										that all of its arguments exist in the graph. If not then it will throw
+									an error</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertices: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="check_is_vertex" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check_<wbr>is_<wbr>vertex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">check_<wbr>is_<wbr>vertex<span class="tsd-signature-symbol">(</span>vertices<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L156">graphs.ts:156</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A helper function for argument sanitisation. This funciton makes sure
+										that all of its arguments are instances of <a href="_vertices_.vertex.html">Vertex</a>. If one is found
+									that is not a vertex then it will throw an error.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertices: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+					<a name="check_no_graph_duplicates" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> check_<wbr>no_<wbr>graph_<wbr>duplicates</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+						<li class="tsd-signature tsd-kind-icon">check_<wbr>no_<wbr>graph_<wbr>duplicates<span class="tsd-signature-symbol">(</span>vertices<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L169">graphs.ts:169</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>A helper function for argument sanitisation. This funciton makes sure
+										that none of its arguments have the same id and type as a vertex in the
+									graph. If one is found it will throw an error.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertices: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="del_vertex" class="tsd-anchor"></a>
+					<h3>del_<wbr>vertex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">del_<wbr>vertex<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L60">graphs.ts:60</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes the given vertices from the graph</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -214,7 +366,7 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L72">graphs.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L99">graphs.ts:99</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,13 +399,13 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 					<a name="get_vertex" class="tsd-anchor"></a>
 					<h3>get_<wbr>vertex</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get_<wbr>vertex<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></li>
+						<li class="tsd-signature tsd-kind-icon">get_<wbr>vertex<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L29">graphs.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L29">graphs.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +428,10 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">undefined</span>
+							</h4>
 						</li>
 					</ul>
 				</section>
@@ -290,7 +445,7 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L105">graphs.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L132">graphs.ts:132</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,7 +476,7 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L107">graphs.ts:107</a></li>
+													<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L134">graphs.ts:134</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-returns-title">Returns <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a>
@@ -346,7 +501,7 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L84">graphs.ts:84</a></li>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/858cb13/src/graphs.ts#L111">graphs.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -359,35 +514,6 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 							<ul class="tsd-parameters">
 								<li>
 									<h5>vertex: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
-					<a name="test_add_vertex" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> test_<wbr>add_<wbr>vertex</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">test_<wbr>add_<wbr>vertex<span class="tsd-signature-symbol">(</span>vertices<span class="tsd-signature-symbol">: </span><a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/73474da/src/graphs.ts#L127">graphs.ts:127</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Used to make sure that the vertices added to the graph are valid. It
-									will throw an error if any of the vertices have a problem.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>vertices: <a href="_vertices_.vertex.html" class="tsd-signature-type">Vertex</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -433,6 +559,21 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 								<a href="_graphs_.graph.html#add_vertex" class="tsd-kind-icon">add_<wbr>vertex</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_graphs_.graph.html#check_argument_duplicates" class="tsd-kind-icon">check_<wbr>argument_<wbr>duplicates</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_graphs_.graph.html#check_exist_in_graph" class="tsd-kind-icon">check_<wbr>exist_<wbr>in_<wbr>graph</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_graphs_.graph.html#check_is_vertex" class="tsd-kind-icon">check_<wbr>is_<wbr>vertex</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+								<a href="_graphs_.graph.html#check_no_graph_duplicates" class="tsd-kind-icon">check_<wbr>no_<wbr>graph_<wbr>duplicates</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_graphs_.graph.html#del_vertex" class="tsd-kind-icon">del_<wbr>vertex</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#get_storage_index" class="tsd-kind-icon">get_<wbr>storage_<wbr>index</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -443,9 +584,6 @@ graph.add_vertex(myvertex1, myvertex2, myvertex3);  <span class="hljs-comment">/
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="_graphs_.graph.html#set_edges" class="tsd-kind-icon">set_<wbr>edges</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="_graphs_.graph.html#test_add_vertex" class="tsd-kind-icon">test_<wbr>add_<wbr>vertex</a>
 							</li>
 						</ul>
 					</li>

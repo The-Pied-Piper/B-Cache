@@ -33,7 +33,7 @@ TreeNode.children = new Edge(
  * Moves this mode to a different branch (parent) of the tree or sets it as
  * the root if parent is given as null
  */
-TreeNode.prototype.move = function (parent) {
+TreeNode.prototype.move_to = function (parent) {
     this.parentID = parent ? parent.id : null;
 }
 
@@ -77,7 +77,7 @@ console.log(node2.find(4) === node4); // true
 console.log(node1.find(4)); // undefined since node4 is not in this branch
 
 // And we can move the nodes around
-node4.move(node1);
+node4.move_to(node1);
 console.log(root.find(4) === node4); // true
 console.log(node2.find(4)); //undefined
 console.log(node1.find(4) === node4); // true    the node was moved

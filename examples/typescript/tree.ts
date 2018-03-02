@@ -46,7 +46,7 @@ class TreeNode extends Vertex {
      * Moves this mode to a different branch (parent) of the tree or sets it as
      * the root if parent is given as null
      */
-    public move(parent: TreeNode | null) {
+    public move_to(parent: TreeNode | null) {
         this.pID = parent ? parent.id : null;
     }
 
@@ -79,6 +79,6 @@ const node3 = new TreeNode(3, 1);
 const node4 = new TreeNode(4, 2);
 graph.add_vertex(root, node1, node2, node3, node4);
 
-// The graph makes the edges we need with the other vertices.
+// The graph populates the edges automatically.
 console.log(node1.parent); // root    Notice that this returns a single vertex
-console.log(node1.children); // [node3]    Notice that this returns an Array
+console.log(root.children); // [node1, node2]    Notice that this returns an Array

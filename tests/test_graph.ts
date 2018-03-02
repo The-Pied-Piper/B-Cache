@@ -98,7 +98,7 @@ describe("Graph", () => {
             const test = () => { graph.add_vertex(vertex1); };
             expect(test).to.throw(
                 Error,
-                "Arguments must be a vertex",
+                "Arguments must be vertices",
             );
         });
         it("Should add the edge", () => {
@@ -127,12 +127,12 @@ describe("Graph", () => {
             }
             const graph = new Graph();
             const vertex1 = new DummyVertex(12, "test");
-            const vertex2 = {id: 13, type: "test"} as any;
+            const vertex2 = { id: 13, type: "test" } as any;
             const vertex3 = new DummyVertex(14, "test");
             const test = () => { graph.add_vertex(vertex1, vertex2, vertex3); };
             expect(test).to.throw(
                 Error,
-                "Arguments must be a vertex",
+                "Arguments must be vertices",
             );
         });
         it("Should throw an error if any of the arguments have a match in the graph", () => {
@@ -331,4 +331,66 @@ describe("Graph", () => {
             expect(rel.get()).to.eql(null);
         });
     });
+
+    // Test the del_vertex function
+    describe("del_vertex()", () => {
+        it("Should throw a not found error for an empty graph", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const testFn = () => { graph.del_vertex(vertex1); };
+            expect(testFn).to.throw(Error, "Vertex not found in graph");
+        });
+        it("Should throw a not found error if the vertex was not found", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const vertex2 = new Vertex(13, "test");
+            graph.add_vertex(vertex1);
+            const testFn = () => { graph.del_vertex(vertex2); };
+            expect(testFn).to.throw(Error, "Vertex not found in graph");
+        });
+        it("Should throw an error if the vertex was found but the instance was wrong", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const vertex2 = new Vertex(13, "test");
+            const vertex3 = new Vertex(13, "test");
+            graph.add_vertex(vertex1, vertex2);
+            const testFn = () => { graph.del_vertex(vertex3); };
+            expect(testFn).to.throw(Error, "Vertex found but instance in graph does not match argument");
+        });
+        it("Should throw an error if 2 of the arguments have the same id and type", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const vertex2 = new Vertex(13, "test");
+            graph.add_vertex(vertex1, vertex2);
+            const testFn = () => { graph.del_vertex(vertex1, vertex2, vertex2); };
+            expect(testFn).to.throw(Error, "Arguments have duplicate type and id");
+        });
+        it("Should throw an error if one of the arguments is not a vertex", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const vertex2 = { id: 13, type: "test" } as any;
+            graph.add_vertex(vertex1);
+            const testFn = () => { graph.del_vertex(vertex1, vertex2); };
+            expect(testFn).to.throw(Error, "Arguments must be vertices");
+        });
+        it("Should work with only one argument", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const vertex2 = new Vertex(13, "test");
+            graph.add_vertex(vertex1, vertex2);
+            graph.del_vertex(vertex1);
+            expect(graph.get_vertex({ id: 12, type: "test" })).to.equal(undefined);
+        });
+        it("Should work with multiple argumets", () => {
+            const graph = new Graph();
+            const vertex1 = new Vertex(12, "test");
+            const vertex2 = new Vertex(13, "test");
+            const vertex3 = new Vertex(14, "test");
+            graph.add_vertex(vertex1, vertex2, vertex3);
+            graph.del_vertex(vertex1, vertex3);
+            expect(graph.get_vertex({ id: 12, type: "test" })).to.equal(undefined);
+            expect(graph.get_vertex({ id: 14, type: "test" })).to.equal(undefined);
+        });
+    });
+
 });

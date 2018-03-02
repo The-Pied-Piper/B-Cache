@@ -26,7 +26,7 @@ export class Graph {
      * Returns the vertex with the given id and type. If no type is given then
      * null is assumed.
      */
-    public get_vertex({ id, type }: { id: string | number, type?: string }): Vertex {
+    public get_vertex({ id, type }: { id: string | number, type?: string }): Vertex|undefined {
         const index = this.get_storage_index(id, type);
         return this.vertexIndex[index];
     }
@@ -35,10 +35,16 @@ export class Graph {
      * Adds the given verted to the graph. If a vertex with this combination of
      * id and type already exists then it throws an error instead.
      */
-    public add_vertex(...args: Vertex[]) {
+    public add_vertex(...args: Vertex[]): void {
 
-        // Makes sure the vertices are good
-        this.test_add_vertex(args);
+        // Make sure everything is a vertex
+        this.check_is_vertex(args);
+
+        // Make sure no duplicates exist in the graph
+        this.check_no_graph_duplicates(args);
+
+        // Make sure no duplicates exist in the arguments
+        this.check_argument_duplicates(args);
 
         // add the vertices to the graph
         for (const vertex of args) {
@@ -46,6 +52,27 @@ export class Graph {
             this.vertexIndex[index] = vertex;
             this.set_edges(vertex);
         }
+    }
+
+    /**
+     * Removes the given vertices from the graph
+     */
+    public del_vertex(...args: Vertex[]): void {
+
+        // Make sure everything is a vertex
+        this.check_is_vertex(args);
+
+        // Make sure no duplicates exist in the graph
+        this.check_exist_in_graph(args);
+
+        // Make sure no duplicates exist in the arguments
+        this.check_argument_duplicates(args);
+
+        for (const vertex of args) {
+            const index: string = this.get_storage_index(vertex.id, vertex.type);
+            delete this.vertexIndex[index];
+        }
+
     }
 
     /**
@@ -121,27 +148,63 @@ export class Graph {
         };
     }
 
-    /** Used to make sure that the vertices added to the graph are valid. It
-     * will throw an error if any of the vertices have a problem.
+    /**
+     * A helper function for argument sanitisation. This funciton makes sure
+     * that all of its arguments are instances of [[Vertex]]. If one is found
+     * that is not a vertex then it will throw an error.
      */
-    private test_add_vertex(vertices: Vertex[]): void {
-        const argIndexes: string[] = [];
+    private check_is_vertex(vertices: Vertex[]) {
         for (const vertex of vertices) {
-
-            // Make sure everything is a vertex
             if (!(vertex instanceof Vertex)) {
-                throw TypeError("Arguments must be a vertex");
+                throw TypeError("Arguments must be vertices");
             }
+        }
+    }
 
-            // Make sure no duplicates exist in the graph
+    /**
+     * A helper function for argument sanitisation. This funciton makes sure
+     * that none of its arguments have the same id and type as a vertex in the
+     * graph. If one is found it will throw an error.
+     */
+    private check_no_graph_duplicates(vertices: Vertex[]) {
+        for (const vertex of vertices) {
             if (this.get_vertex({ id: vertex.id, type: vertex.type })) {
                 throw new Error(
                     "A vertex with id '" + vertex.id + "' and type '" +
                     vertex.type + "' already exists in the graph",
                 );
             }
+        }
+    }
 
-            // Make sure no duplicates exist in the arguments
+    /**
+     * A helper function for argument sanitisation. This funciton makes sure
+     * that all of its arguments exist in the graph. If not then it will throw
+     * an error
+     */
+    private check_exist_in_graph(vertices: Vertex[]) {
+        for (const vertex of vertices) {
+            const graphVertex = this.get_vertex({ id: vertex.id, type: vertex.type });
+            if (!graphVertex) {
+                throw new Error(
+                    "Vertex not found in graph",
+                );
+            } else if (graphVertex !== vertex) {
+                throw new Error(
+                    "Vertex found but instance in graph does not match argument",
+                );
+            }
+        }
+    }
+
+    /**
+     * A helper function for argument sanitisation. This funciton makes sure
+     * that none of its arguments have the same id and type. If one is found it
+     * will throw an error.
+     */
+    private check_argument_duplicates(vertices: Vertex[]) {
+        const argIndexes: string[] = [];
+        for (const vertex of vertices) {
             const storageIndex = this.get_storage_index(vertex.id, vertex.type);
             const duplicate = argIndexes.some(
                 (vindex) => storageIndex === vindex,

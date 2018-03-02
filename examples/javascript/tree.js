@@ -67,13 +67,13 @@ var node3 = new TreeNode(3, 1);
 var node4 = new TreeNode(4, 2);
 graph.add_vertex(root, node1, node2, node3, node4);
 
-// The graph makes the edges we need with the other vertices.
+// The graph populates the edges automatically.
 console.log(node1.parent); // root    Notice that this returns a single vertex
-console.log(node1.children); // [node3]    Notice that this returns an Array
+console.log(root.children); // [node1, node2]    Notice that this returns an Array
 
 // We can search through the tree
 console.log(root.find(4) === node4); // true
-console.log(node4.find(4) === node4); // true
+console.log(node2.find(4) === node4); // true
 console.log(node1.find(4)); // undefined since node4 is not in this branch
 
 // And we can move the nodes around

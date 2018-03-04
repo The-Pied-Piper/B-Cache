@@ -147,7 +147,7 @@ graph.add_vertex(employee1, employee2, employee3);
 </code></pre>
 				<p>In this way we can prevent collisions between our Employee vertices and, lets say, Department vertices which we want to store in the same graph so that we can define edges between them. By specifying the type of the vertices we can now store a Department with id 1 in the same graph as an employee also with id 1 as long as their vertex type is different.</p>
 				<p>To retrieve a vertex with from the graph which has a defined type we must also pass the type to the get_vertex function</p>
-				<pre><code class="lang-typescript"><span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2.</span> <span class="hljs-keyword">type</span>: <span class="hljs-string">"employee"</span>}).name)    <span class="hljs-comment">// Ann Mathews.</span>
+				<pre><code class="lang-typescript"><span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">"employee"</span>}).name)    <span class="hljs-comment">// Ann Mathews.</span>
 </code></pre>
 				<h2 id="getting-started">Getting Started</h2>
 				<p>To get started you can download or clone the repository from <a href="https://github.com/The-Pied-Piper/B-Cache">github</a>. You will also need typescript in order to compile the project.</p>

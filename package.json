@@ -12,7 +12,7 @@
     "prebuild": "npm run clean && npm run test",
     "postbuild": "npm run document && shx echo \"\"  > ./docs/.nojekyll",
     "version": "npm run build && git add -A docs",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "git push && git push --tags && npm publish",
   },
   "repository": {
     "type": "git",
@@ -43,9 +43,15 @@
     "typescript": "^2.7.1",
     "webpack": "^3.11.0"
   },
-  "main": "webpack.config.js",
+  "main": "lib/index.js",
+  "files": [
+      "dist", "lib", "lib-esm"
+  ],
   "directories": {
-    "test": "tests"
+    "test": "tests",
+    "doc": "docs",
+    "example": "examples",
+    "lib": "lib"
   },
   "dependencies": {}
 }

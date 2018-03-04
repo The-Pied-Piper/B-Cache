@@ -24,7 +24,7 @@ var Graph = bcache.Graph;
 
 for the es5 lib version you can use
 ```javascript
-var Vertex = require("b-cache/lib/index").Vector;
+var Vertex = require("b-cache/lib/index").Vertex;
 var Edge = require("b-cache/lib/index").Edge;
 var Graph = require("b-cache/lib/index").Graph;
 ```

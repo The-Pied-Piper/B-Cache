@@ -66,6 +66,21 @@ describe("Graph", () => {
             }
             expect(vertices).to.contain(vertex2);
         });
+        it("Should differenciate between type='' and undefined", () => {
+            const graph = new Graph() as any;
+            const vertex1 = new Vertex(12, "");
+            const vertex2 = new Vertex(12, undefined);
+            graph.add_vertex(vertex1);
+            graph.add_vertex(vertex2);
+            const vertices: Vertex[] = [];
+            for (const key in graph.vertexIndex) {
+                if (graph.vertexIndex.hasOwnProperty(key)) {
+                    const element = graph.vertexIndex[key];
+                    vertices.push(element);
+                }
+            }
+            expect(vertices).to.contain(vertex2);
+        });
         it("Should work with vertices of same type but different id", () => {
             const graph = new Graph() as any;
             const vertex1 = new Vertex(12, "test1");
@@ -238,7 +253,7 @@ describe("Graph", () => {
         });
     });
 
-    // Test the set_edgs function
+    // Test the set_edges function
     describe("set_edge()", () => {
         it("Should add the defined edge to the vertex", () => {
             class DummyVertex extends Vertex {

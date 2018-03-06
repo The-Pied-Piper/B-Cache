@@ -32,5 +32,9 @@ describe("Vertex", () => {
             const testfunction = () => { const vertex = new Vertex(1, true as any); };
             expect(testfunction).to.throw(TypeError, "'type' must be a string");
         });
+        it("Should empty string shoudl work for type", () => {
+            const vertex = new Vertex(1, "");
+            expect(vertex.type).to.equal("");
+        });
     });
 });

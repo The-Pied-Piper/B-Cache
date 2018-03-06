@@ -23,7 +23,7 @@ export class Vertex {
             throw TypeError("'type' must be a string");
         }
         this.vertexID = id;
-        this.vertexType = type || this.vertexType;
+        this.vertexType = type;
 
     }
 

@@ -98,7 +98,8 @@ export class Graph {
      */
     private get_storage_index(id: number | string, type?: string): string {
         const idString = JSON.stringify({ i: id }).replace("}", ",");
-        const typeString = JSON.stringify({ t: type || null });
+        const vertexType = type === undefined ? null : type;
+        const typeString = JSON.stringify({ t: vertexType });
         const index = idString + typeString.substring(1);
         index.replace(/\s/g, "");
         return idString + typeString.substring(1);

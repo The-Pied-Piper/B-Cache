@@ -41,7 +41,7 @@ export class Edge {
     /**
      * Holds whether this rule returns a single vertex or an Array of vertices
      */
-    private multipledges: boolean;
+    private multiEdges: boolean;
 
     /**
      * Creates an instance of an [[Edge]]
@@ -54,7 +54,7 @@ export class Edge {
             throw TypeError("Argument 'rule' must be a function");
         }
         this.edgeRule = rule;
-        this.multipledges = multiple;
+        this.multiEdges = multiple;
     }
 
     /**
@@ -68,6 +68,6 @@ export class Edge {
      * Returns whether or not this Edge's rule connects to more than one vertex
      */
     public get multiple(): boolean {
-        return this.multipledges;
+        return this.multiEdges;
     }
 }

@@ -13,7 +13,7 @@ npm install B-Cache
 
 ## Usage
 
-Three copies are provided for convenience. a minified browser compatible version, es6 version of the library and an es5 version.
+Three copies are provided for convenience. A minified browser version, an es6 version, and an es5 version.
 
 To use the browser version simply include `b-cache/dist/bcache.min.js` in a script tag and use it by referring to the class you need
 ```javascript
@@ -22,11 +22,11 @@ var Edge = bcache.Edge;
 var Graph = bcache.Graph;
 ```
 
-for the es5 lib version you can use
+for the es5 version (default) you can use
 ```javascript
-var Vertex = require("b-cache/lib/index").Vertex;
-var Edge = require("b-cache/lib/index").Edge;
-var Graph = require("b-cache/lib/index").Graph;
+var Vertex = require("b-cache").Vertex;
+var Edge = require("b-cache").Edge;
+var Graph = require("b-cache").Graph;
 ```
 
 And for es6

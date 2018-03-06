@@ -118,16 +118,16 @@ describe("Graph", () => {
         });
         it("Should add the edge", () => {
             class DummyVertex extends Vertex {
-                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+                public static ed1 = new Edge((vertex) => true);
             }
             const graph = new Graph();
             const vertex1 = new DummyVertex(12, "test");
             graph.add_vertex(vertex1);
-            expect(() => { const relation = vertex1.ed1; }).to.throw(Error, "here");
+            expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
         });
         it("Should add multiple vertices at once", () => {
             class DummyVertex extends Vertex {
-                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+                public static ed1 = new Edge((vertex) => true);
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
@@ -138,7 +138,7 @@ describe("Graph", () => {
         });
         it("Should throw an error if any of the arguments is not a vertex", () => {
             class DummyVertex extends Vertex {
-                public static ed1 = new Edge((vertex) => { throw new Error("here"); });
+                public static ed1 = new Edge((vertex) => true);
             }
             const graph = new Graph();
             const vertex1 = new DummyVertex(12, "test");
@@ -178,6 +178,61 @@ describe("Graph", () => {
                 Error,
                 "Arguments have duplicate type and id",
             );
+        });
+        it("Should add vertex to edges", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((from, to) => to.id > 5 && from !== to);
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(2, "test");
+            const vertex2 = new DummyVertex(1, "test");
+            const vertex3 = new DummyVertex(6, "test");
+            graph.add_vertex(vertex1, vertex2);
+            graph.add_vertex(vertex3);
+            expect(vertex1.ed1).to.eql([vertex3]);
+            expect(vertex2.ed1).to.eql([vertex3]);
+        });
+        it("Should not add vertex to edges where it does not belong", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((from, to) => to.id > 5 && from !== to);
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(2, "test");
+            const vertex2 = new DummyVertex(1, "test");
+            const vertex3 = new DummyVertex(3, "test");
+            graph.add_vertex(vertex1, vertex2);
+            graph.add_vertex(vertex3);
+            expect(vertex1.ed1).to.eql([]);
+            expect(vertex2.ed1).to.eql([]);
+        });
+        it("Should populate new vertexes edges", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((from, to) => to.id > 5 && from !== to);
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(7, "test");
+            const vertex2 = new DummyVertex(1, "test");
+            const vertex3 = new DummyVertex(3, "test");
+            graph.add_vertex(vertex1, vertex2);
+            graph.add_vertex(vertex3);
+            expect(vertex3.ed1).to.eql([vertex1]);
+        });
+        it("Should add vertex to edges during batch additions", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((from, to) => to.id > 5 && from !== to);
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(1, "test");
+            const vertex2 = new DummyVertex(2, "test");
+            const vertex3 = new DummyVertex(3, "test");
+            const vertex4 = new DummyVertex(6, "test");
+            const vertex5 = new DummyVertex(5, "test");
+            graph.add_vertex(vertex1, vertex2);
+            graph.add_vertex(vertex3, vertex4, vertex5);
+            expect(vertex1.ed1).to.eql([vertex4]);
+            expect(vertex2.ed1).to.eql([vertex4]);
+            expect(vertex3.ed1).to.eql([vertex4]);
+            expect(vertex5.ed1).to.eql([vertex4]);
         });
     });
 
@@ -257,27 +312,27 @@ describe("Graph", () => {
     describe("set_edge()", () => {
         it("Should add the defined edge to the vertex", () => {
             class DummyVertex extends Vertex {
-                public static ed1 = new Edge(() => { throw new Error("here"); });
+                public static ed1 = new Edge(() => true);
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
             const index = graph.get_storage_index(vertex1.id, vertex1.type);
             graph.vertexIndex[index] = vertex1;
             graph.set_edges(vertex1);
-            expect(() => { const relation = vertex1.ed1; }).to.throw(Error, "here");
+            expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
         });
         it("Should add the defined edges to the vertex when more than one is defined", () => {
             class DummyVertex extends Vertex {
-                public static ed1 = new Edge(() => { throw new Error("here1"); });
-                public static ed2 = new Edge(() => { throw new Error("here2"); });
+                public static ed1 = new Edge(() => true);
+                public static ed2 = new Edge(() => true);
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
             const index = graph.get_storage_index(vertex1.id, vertex1.type);
             graph.vertexIndex[index] = vertex1;
             graph.set_edges(vertex1);
-            expect(() => { const relation = vertex1.ed1; }).to.throw(Error, "here1");
-            expect(() => { const relation = vertex1.ed2; }).to.throw(Error, "here2");
+            expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
+            expect(vertex1.hasOwnProperty("ed2")).to.equal(true);
         });
         it("Should do nothing if no edges are defined", () => {
             class DummyVertex extends Vertex {
@@ -286,7 +341,10 @@ describe("Graph", () => {
             const vertex1 = new DummyVertex(12, "test");
             const index = graph.get_storage_index(vertex1.id, vertex1.type);
             graph.vertexIndex[index] = vertex1;
+            const oldKeys = Object.keys(vertex1);
             graph.set_edges(vertex1);
+            const newKeys = Object.keys(vertex1);
+            expect(oldKeys).to.eql(newKeys);
         });
     });
 
@@ -406,6 +464,30 @@ describe("Graph", () => {
             expect(graph.get_vertex({ id: 12, type: "test" })).to.equal(undefined);
             expect(graph.get_vertex({ id: 14, type: "test" })).to.equal(undefined);
         });
+        it("Should remove the vertex from edges when it is removed", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((from, to) => to.id > 5 && from !== to);
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(2, "test");
+            const vertex2 = new DummyVertex(1, "test");
+            const vertex3 = new DummyVertex(6, "test");
+            graph.add_vertex(vertex1, vertex2, vertex3);
+            graph.del_vertex(vertex3);
+            expect(vertex1.ed1).to.eql([]);
+            expect(vertex2.ed1).to.eql([]);
+        });
+        it("Should remove bulk removed vertices from edges", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge((from, to) => to.id > 5 && from !== to);
+            }
+            const graph = new Graph();
+            const vertex1 = new DummyVertex(7, "test");
+            const vertex2 = new DummyVertex(8, "test");
+            const vertex3 = new DummyVertex(9, "test");
+            graph.add_vertex(vertex1, vertex2, vertex3);
+            graph.del_vertex(vertex3, vertex1);
+            expect(vertex2.ed1).to.eql([]);
+        });
     });
-
 });

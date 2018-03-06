@@ -26,7 +26,7 @@ export class Graph {
      * Returns the vertex with the given id and type. If no type is given then
      * null is assumed.
      */
-    public get_vertex({ id, type }: { id: string | number, type?: string }): Vertex|undefined {
+    public get_vertex({ id, type }: { id: string | number, type?: string }): Vertex | undefined {
         const index = this.get_storage_index(id, type);
         return this.vertexIndex[index];
     }
@@ -72,7 +72,6 @@ export class Graph {
             const index: string = this.get_storage_index(vertex.id, vertex.type);
             delete this.vertexIndex[index];
         }
-
     }
 
     /**
@@ -127,24 +126,22 @@ export class Graph {
     /**
      * Returns an object with a getter funciton for returning all the vertices
      * that the given vertex is connected to by the given [[Edge]] rule. If no
-     * matches are found and multiple is flase the null is returned else an
+     * matches are found and multiple is flase then null is returned else an
      * empty array and returned
      */
     private relationship(edge: Edge, currentVertex: Vertex) {
         return {
             get: (): Vertex | Vertex[] | null => {
-                const result: Vertex[] = [];
+                const edges: Vertex[] = [];
                 for (const vertex of this.vertices) {
-                    if (edge.rule(currentVertex, vertex) && edge.multiple) {
-                        result.push(vertex);
-                    } else if (edge.rule(currentVertex, vertex)) {
-                        return vertex;
+                    if (edge.rule(currentVertex, vertex)) {
+                        edges.push(vertex);
+                        if (!edge.multiple) {
+                            break;
+                        }
                     }
                 }
-                if (edge.multiple) {
-                    return result;
-                }
-                return null;
+                return edge.multiple ? edges : edges[0] || null;
             },
         };
     }

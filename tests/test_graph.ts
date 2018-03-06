@@ -321,6 +321,21 @@ describe("Graph", () => {
             graph.set_edges(vertex1);
             expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
         });
+        it("Should allow edge inheritance", () => {
+            class DummyVertex extends Vertex {
+                public static ed1 = new Edge(() => true);
+            }
+            class DummyChildVertex extends DummyVertex {
+                public static ed2 = new Edge(() => true);
+            }
+            const graph = new Graph() as any;
+            const vertex1 = new DummyChildVertex(12, "test");
+            const index = graph.get_storage_index(vertex1.id, vertex1.type);
+            graph.vertexIndex[index] = vertex1;
+            graph.set_edges(vertex1);
+            expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
+            expect(vertex1.hasOwnProperty("ed2")).to.equal(true);
+        });
         it("Should add the defined edges to the vertex when more than one is defined", () => {
             class DummyVertex extends Vertex {
                 public static ed1 = new Edge(() => true);

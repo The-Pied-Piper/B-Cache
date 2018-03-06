@@ -110,15 +110,13 @@ export class Graph {
      */
     private set_edges(vertex: Vertex) {
         for (const key in vertex.constructor) {
-            if (vertex.constructor.hasOwnProperty(key)) {
+            if ((vertex.constructor as any)[key] instanceof Edge) {
                 const element = (vertex.constructor as any)[key];
-                if (element instanceof Edge) {
-                    Object.defineProperty(
-                        vertex,
-                        key,
-                        this.relationship(element, vertex),
-                    );
-                }
+                Object.defineProperty(
+                    vertex,
+                    key,
+                    this.relationship(element, vertex),
+                );
             }
         }
     }

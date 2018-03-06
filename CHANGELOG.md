@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 - Adding callback triggers when a Vertex's property is changed
 
+## [0.2.5] - 2018-03-07
+### Fixed
+- Bug where edges were not inherited from parent classes.
+
 ## [0.2.4] - 2018-03-06
 ### Changed
 - Private property multipledges of class Edge renamed to multiEdges

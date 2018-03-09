@@ -1,6 +1,11 @@
 # B-Cache
 
-[![CircleCI](https://circleci.com/gh/The-Pied-Piper/B-Cache.svg?style=svg)](https://circleci.com/gh/The-Pied-Piper/B-Cache)
+
+[![CircleCI](https://img.shields.io/circleci/project/github/The-Pied-Piper/B-Cache.svg?style=plastic)](https://circleci.com/gh/The-Pied-Piper/B-Cache)
+[![npm](https://img.shields.io/npm/dm/b-cache.svg?style=plastic)](https://www.npmjs.com/package/b-cache)
+[![GitHub package version](https://img.shields.io/github/package-json/v/The-Pied-Piper/B-Cache.svg?style=plastic)](https://github.com/The-Pied-Piper/B-Cache)
+
+
 
 A simple to use memory based storage for complex data types. Currently only a graph like implementation is avalible. This works by defining vertices and edges and adding them to an instance of a graph. At its heart this is a data abstraction layer that makes it simple to hold complex data types that may or may not be related in some way.
 
@@ -134,7 +139,7 @@ You can now run the tests!
 ```
 npm run test
 ```
-Once the tests run you will get an annoying error about missing tslint. we use this to test compliance with the style guide. to fix the message read on.
+Once the tests run you will get an annoying error about missing tslint. We use this to test compliance with the style guide. To fix the message read on.
 
 ### Coding style tests
 
@@ -144,7 +149,7 @@ npm install --save-dev tslint
 ```
 you can then test that you are following the style by running
 ```
-npm lint
+npm run lint
 ```
 
 ## Deployment

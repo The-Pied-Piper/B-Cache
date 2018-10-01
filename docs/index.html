@@ -65,30 +65,28 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="b-cache">B-Cache</h1>
-				<p><a href="https://circleci.com/gh/The-Pied-Piper/B-Cache"><img src="https://circleci.com/gh/The-Pied-Piper/B-Cache.svg?style=svg" alt="CircleCI"></a></p>
+				<p><a href="https://circleci.com/gh/The-Pied-Piper/B-Cache"><img src="https://img.shields.io/circleci/project/github/The-Pied-Piper/B-Cache.svg?style=plastic" alt="CircleCI"></a>
+					<a href="https://www.npmjs.com/package/b-cache"><img src="https://img.shields.io/npm/dm/b-cache.svg?style=plastic" alt="npm"></a>
+				<a href="https://github.com/The-Pied-Piper/B-Cache"><img src="https://img.shields.io/github/package-json/v/The-Pied-Piper/B-Cache.svg?style=plastic" alt="GitHub package version"></a></p>
 				<p>A simple to use memory based storage for complex data types. Currently only a graph like implementation is avalible. This works by defining vertices and edges and adding them to an instance of a graph. At its heart this is a data abstraction layer that makes it simple to hold complex data types that may or may not be related in some way.</p>
 				<h2 id="installation">Installation</h2>
 				<p>To install the package for use in your own project just use npm</p>
-				<pre><code>npm <span class="hljs-keyword">install</span> B-<span class="hljs-keyword">Cache</span>
-</code></pre><h2 id="usage">Usage</h2>
+				<pre><code>npm <span class="hljs-keyword">install</span> B-<span class="hljs-keyword">Cache</span></code></pre><h2 id="usage">Usage</h2>
 				<p>Three copies are provided for convenience. A minified browser version, an es6 version, and an es5 version.</p>
 				<p>To use the browser version simply include <code>b-cache/dist/bcache.min.js</code> in a script tag and use it by referring to the class you need</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Vertex = bcache.Vertex;
+				<pre><code class="language-javascript"><span class="hljs-keyword">var</span> Vertex = bcache.Vertex;
 <span class="hljs-keyword">var</span> Edge = bcache.Edge;
-<span class="hljs-keyword">var</span> Graph = bcache.Graph;
-</code></pre>
+<span class="hljs-keyword">var</span> Graph = bcache.Graph;</code></pre>
 				<p>for the es5 version (default) you can use</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> Vertex = <span class="hljs-built_in">require</span>(<span class="hljs-string">"b-cache"</span>).Vertex;
+				<pre><code class="language-javascript"><span class="hljs-keyword">var</span> Vertex = <span class="hljs-built_in">require</span>(<span class="hljs-string">"b-cache"</span>).Vertex;
 <span class="hljs-keyword">var</span> Edge = <span class="hljs-built_in">require</span>(<span class="hljs-string">"b-cache"</span>).Edge;
-<span class="hljs-keyword">var</span> Graph = <span class="hljs-built_in">require</span>(<span class="hljs-string">"b-cache"</span>).Graph;
-</code></pre>
+<span class="hljs-keyword">var</span> Graph = <span class="hljs-built_in">require</span>(<span class="hljs-string">"b-cache"</span>).Graph;</code></pre>
 				<p>And for es6</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { Vertex } <span class="hljs-keyword">from</span> <span class="hljs-string">"b-cache/lib-esm/index"</span>;
+				<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { Vertex } <span class="hljs-keyword">from</span> <span class="hljs-string">"b-cache/lib-esm/index"</span>;
 <span class="hljs-keyword">import</span> { Edge } <span class="hljs-keyword">from</span> <span class="hljs-string">"b-cache/lib-esm/index"</span>;
-<span class="hljs-keyword">import</span> { Graph } <span class="hljs-keyword">from</span> <span class="hljs-string">"b-cache/lib-esm/index"</span>;
-</code></pre>
+<span class="hljs-keyword">import</span> { Graph } <span class="hljs-keyword">from</span> <span class="hljs-string">"b-cache/lib-esm/index"</span>;</code></pre>
 				<p>Below is a simple use case writen in typescript. You can find other examples writen in both javascript and typescript in the <a href="https://github.com/The-Pied-Piper/B-Cache/tree/master/examples">examples folder</a> of this repository.</p>
-				<pre><code class="lang-typescript">
+				<pre><code class="language-typescript">
 <span class="hljs-comment">// First lets extend vertex with our own class.</span>
 
 <span class="hljs-keyword">class</span> Employee <span class="hljs-keyword">extends</span> Vertex {
@@ -140,45 +138,34 @@ graph.add_vertex(employee1, employee2, employee3);
 
 <span class="hljs-comment">// We can also retrieve individual edges from the graph</span>
 <span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2</span>}).name)    <span class="hljs-comment">// Ann Mathews</span>
-
 </code></pre>
 				<p>It is possible and often useful to have multiple sub-classes of Vertex and store them in the same graph. Since it is conceivable that in this case vertices might have the same id we can also specify a vertex type by passing a second string argument to the Vertex super class.</p>
-				<pre><code class="lang-typescript"><span class="hljs-keyword">super</span>(id, <span class="hljs-string">"employee"</span>);
-</code></pre>
+				<pre><code class="language-typescript"><span class="hljs-keyword">super</span>(id, <span class="hljs-string">"employee"</span>);</code></pre>
 				<p>In this way we can prevent collisions between our Employee vertices and, lets say, Department vertices which we want to store in the same graph so that we can define edges between them. By specifying the type of the vertices we can now store a Department with id 1 in the same graph as an employee also with id 1 as long as their vertex type is different.</p>
 				<p>To retrieve a vertex with from the graph which has a defined type we must also pass the type to the get_vertex function</p>
-				<pre><code class="lang-typescript"><span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">"employee"</span>}).name)    <span class="hljs-comment">// Ann Mathews.</span>
-</code></pre>
+				<pre><code class="language-typescript"><span class="hljs-built_in">console</span>.log(graph.get_vertex({id: <span class="hljs-number">2</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">"employee"</span>}).name)    <span class="hljs-comment">// Ann Mathews.</span></code></pre>
 				<h2 id="getting-started">Getting Started</h2>
 				<p>To get started you can download or clone the repository from <a href="https://github.com/The-Pied-Piper/B-Cache">github</a>. You will also need typescript in order to compile the project.</p>
 				<h3 id="prerequisites">Prerequisites</h3>
 				<p>You only need typescript to get the project up and running</p>
 				<h3 id="installing">Installing</h3>
 				<p>The easiest and simplest way to install the app is via npm and the CL interface. Navigte over to the project directory then call</p>
-				<pre><code>npm <span class="hljs-keyword">install</span>
-</code></pre><p>This will install typescript for compiling the app as well as a few other dependencies for testing (mocha, chia, ts-node), building (webpack and ts-loader), documentation (typedoc) and linting (tslint)</p>
+				<pre><code>npm <span class="hljs-keyword">install</span></code></pre><p>This will install typescript for compiling the app as well as a few other dependencies for testing (mocha, chia, ts-node), building (webpack and ts-loader), documentation (typedoc) and linting (tslint)</p>
 				<h2 id="running-the-tests">Running the tests</h2>
 				<p>To run the tests will additionally require <a href="https://mochajs.org/">mocha</a> and
 					<a href="http://chaijs.com/">chai</a> and their typing information as well as ts-node. If you
 					installed the app as noted above then you are already all set otherwise these
 				can be installed via the CL</p>
-				<pre><code>npm install --save-dev mocha chai ts-<span class="hljs-keyword">node</span> <span class="hljs-title">@types</span>/chai @types/mocha
-</code></pre><p>You can now run the tests!</p>
-				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span></span>
-</code></pre><p>Once the tests run you will get an annoying error about missing tslint. we use this to test compliance with the style guide. to fix the message read on.</p>
+				<pre><code>npm install --save-dev mocha chai ts-<span class="hljs-keyword">node</span> <span class="hljs-title">@types</span>/chai @types/mocha</code></pre><p>You can now run the tests!</p>
+				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span></span></code></pre><p>Once the tests run you will get an annoying error about missing tslint. We use this to test compliance with the style guide. To fix the message read on.</p>
 				<h3 id="coding-style-tests">Coding style tests</h3>
 				<p>We use the  tslint recomended style guide for coding. For more information you can visit the <a href="https://palantir.github.io/tslint/">tslint</a> website. The package can be installed using npm</p>
-				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> tslint
-</code></pre><p>you can then test that you are following the style by running</p>
-				<pre><code><span class="hljs-built_in">npm</span> lint
-</code></pre><h2 id="deployment">Deployment</h2>
+				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> tslint</code></pre><p>you can then test that you are following the style by running</p>
+				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> lint</span></code></pre><h2 id="deployment">Deployment</h2>
 				<p>This package can be used both in a browser and on Node.js. To build the package you will need a few more packages. If you installed the application as noted above then you are already all set otherwise you will additionally need to install webpack as well as the ts-loaded webpack plugin. This is easily done via npm and the CL interface.</p>
-				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack ts-loader
-</code></pre><p>You can now build the package using</p>
-				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
-</code></pre><p>This will build the package for you, though, you will get an annoying error at the end mentioning that the documentation could not be generated. To fix this install typedoc</p>
-				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> typedoc
-</code></pre><h2 id="versioning">Versioning</h2>
+				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> webpack ts-loader</code></pre><p>You can now build the package using</p>
+				<pre><code>npm <span class="hljs-keyword">run</span><span class="bash"> build</span></code></pre><p>This will build the package for you, though, you will get an annoying error at the end mentioning that the documentation could not be generated. To fix this install typedoc</p>
+				<pre><code>npm install --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span> typedoc</code></pre><h2 id="versioning">Versioning</h2>
 				<p>We use <a href="http://semver.org/">SemVer</a> for versioning. For the versions available, see the <a href="https://github.com/The-Pied-Piper/B-Cache/tags">tags on this repository</a>.</p>
 				<h2 id="author">Author</h2>
 				<ul>

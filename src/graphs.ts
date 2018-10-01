@@ -96,7 +96,7 @@ export class Graph {
      *        { type: null, id: 1 } should refer to the same object.
      */
     private get_storage_index(id: number | string, type?: string): string {
-        const idString = JSON.stringify({ i: id }).replace("}", ",");
+        const idString = JSON.stringify({ i: id }).replace(/}([^}]*)$/, ",$1");
         const vertexType = type === undefined ? null : type;
         const typeString = JSON.stringify({ t: vertexType });
         const index = idString + typeString.substring(1);

@@ -17,6 +17,7 @@ describe("Vertex", () => {
             expect(vertex.id).to.equal(12);
         });
         it("Should not allow id to be anything except a number or string", () => {
+            // @ts-ignore
             const testfunction = () => {const vertex = new Vertex(true as any); };
             expect(testfunction).to.throw(TypeError, "'id' must be a string or number");
         });
@@ -29,6 +30,7 @@ describe("Vertex", () => {
             expect(vertex.type).to.equal(undefined);
         });
         it("Should not allow type to be anything except string or undefined", () => {
+            // @ts-ignore
             const testfunction = () => { const vertex = new Vertex(1, true as any); };
             expect(testfunction).to.throw(TypeError, "'type' must be a string");
         });

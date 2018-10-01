@@ -118,6 +118,7 @@ describe("Graph", () => {
         });
         it("Should add the edge", () => {
             class DummyVertex extends Vertex {
+                // @ts-ignore
                 public static ed1 = new Edge((vertex) => true);
             }
             const graph = new Graph();
@@ -127,6 +128,7 @@ describe("Graph", () => {
         });
         it("Should add multiple vertices at once", () => {
             class DummyVertex extends Vertex {
+                // @ts-ignore
                 public static ed1 = new Edge((vertex) => true);
             }
             const graph = new Graph() as any;
@@ -138,6 +140,7 @@ describe("Graph", () => {
         });
         it("Should throw an error if any of the arguments is not a vertex", () => {
             class DummyVertex extends Vertex {
+                // @ts-ignore
                 public static ed1 = new Edge((vertex) => true);
             }
             const graph = new Graph();
@@ -152,6 +155,7 @@ describe("Graph", () => {
         });
         it("Should throw an error if any of the arguments have a match in the graph", () => {
             class DummyVertex extends Vertex {
+                // @ts-ignore
                 public static ed1 = new Edge((vertex) => { throw new Error("here"); });
             }
             const graph = new Graph();
@@ -167,6 +171,7 @@ describe("Graph", () => {
         });
         it("Should throw an error if any of the arguments match each other", () => {
             class DummyVertex extends Vertex {
+                // @ts-ignore
                 public static ed1 = new Edge((vertex) => { throw new Error("here"); });
             }
             const graph = new Graph();
@@ -406,6 +411,7 @@ describe("Graph", () => {
         });
         it("Should make getter return null if multiple is false and nothing matches", () => {
             class DummyVertex extends Vertex {
+                // @ts-ignore
                 public static ed1 = new Edge((v1, v2) => false, false);
             }
             const graph = new Graph() as any;

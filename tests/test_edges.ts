@@ -1,7 +1,7 @@
-import { assert, expect } from "chai";
+// @ts-nocheck
+import { expect } from "chai";
 import "mocha";
 import { Edge } from "../src/edges";
-import { Vertex } from "../src/vertices";
 
 describe("Edge", () => {
     describe("new Edge()", () => {

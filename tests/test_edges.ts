@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { expect } from "chai";
 import "mocha";
 import { Edge } from "../src/edges";
@@ -6,17 +5,17 @@ import { Edge } from "../src/edges";
 describe("Edge", () => {
     describe("new Edge()", () => {
         it("Should set the rule property from the argument", () => {
-            const testFn = (v1, v2) => true;
+            const testFn = () => true;
             const edge = new Edge(testFn, true);
             expect(edge.rule).to.equal(testFn);
         });
         it("Should set the multiple property from the argument", () => {
-            const testFn = (v1, v2) => true;
+            const testFn = () => true;
             const edge = new Edge(testFn, false);
             expect(edge.multiple).to.equal(false);
         });
         it("Should set the multiple property to true by default", () => {
-            const testFn = (v1, v2) => true;
+            const testFn = () => true;
             const edge = new Edge(testFn);
             expect(edge.multiple).to.equal(true);
         });

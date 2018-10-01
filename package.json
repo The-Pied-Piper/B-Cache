@@ -1,6 +1,6 @@
 {
   "name": "b-cache",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "A graph like in memory data abstraction layer for complex data types",
   "scripts": {
     "clean": "shx rm -rf dist lib lib-esm docs",

@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 - Adding callback triggers when a Vertex's property is changed
 
+## [0.2.8] - 2018-10-01
+- Forgot to update changelog for previous releases, doing so now. No functional changes
+
+## [0.2.7] - 2018-10-01
+- Updating some dependency versions and tests only. No functional changes.
+
+## [0.2.6] - 2018-10-01
+### Fixed
+- When the id for a vertex contained the '}' character the graph did not index it properly.
+
+
 ## [0.2.5] - 2018-03-07
 ### Fixed
 - Bug where edges were not inherited from parent classes.

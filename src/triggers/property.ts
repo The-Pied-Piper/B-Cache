@@ -13,9 +13,9 @@ export class PropertyHandler {
         const propertydb = this.propertydb;
         const propertyHandler = this;
         return (prototype: any, name: string | symbol) => {
-            let property = propertydb.get_property(prototype, String(name));
+            const property = propertydb.get_property(prototype, String(name));
             if (!property) {
-                property = propertydb.add_property(prototype, String(name));
+                propertydb.add_property(prototype, String(name));
                 propertyHandler.manageproperty(prototype, String(name));
             }
             propertydb.add_mutator(mutator, prototype, String(name));
@@ -30,9 +30,9 @@ export class PropertyHandler {
         const propertydb = this.propertydb;
         const propertyHandler = this;
         return (prototype: any, name: string | symbol) => {
-            let property = propertydb.get_property(prototype, String(name));
+            const property = propertydb.get_property(prototype, String(name));
             if (!property) {
-                property = propertydb.add_property(prototype, String(name));
+                propertydb.add_property(prototype, String(name));
                 propertyHandler.manageproperty(prototype, String(name));
             }
             propertydb.add_property_subscription(subscription, prototype, String(name));

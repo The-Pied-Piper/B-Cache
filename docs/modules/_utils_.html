@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;vertices&quot; | b-cache</title>
+	<title>&quot;utils&quot; | b-cache</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="_vertices_.html">&quot;vertices&quot;</a>
+					<a href="_utils_.html">&quot;utils&quot;</a>
 				</li>
 			</ul>
-			<h1>External module &quot;vertices&quot;</h1>
+			<h1>External module &quot;utils&quot;</h1>
 		</div>
 	</div>
 </header>
@@ -70,13 +70,98 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+						<section class="tsd-index-section tsd-is-not-exported">
+							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_vertices_.vertex.html" class="tsd-kind-icon">Vertex</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/_utils_.ivertex.html" class="tsd-kind-icon">IVertex</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_utils_.html#get_parameter_uid" class="tsd-kind-icon">get_<wbr>parameter_<wbr>uid</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_utils_.html#get_vertex_uid" class="tsd-kind-icon">get_<wbr>vertex_<wbr>uid</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="get_parameter_uid" class="tsd-anchor"></a>
+					<h3>get_<wbr>parameter_<wbr>uid</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get_<wbr>parameter_<wbr>uid<span class="tsd-signature-symbol">(</span>vertex<span class="tsd-signature-symbol">: </span><a href="../interfaces/_utils_.ivertex.html" class="tsd-signature-type">IVertex</a>, parameter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/a28b537/src/utils.ts#L30">utils.ts:30</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retruns a uid string for a parameter in a vertex.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>note:</dt>
+									<dd><p>Can not stringify {id: ..., type: ...} since order is not
+											gurenteed in this case and we need the order to be fixed to
+											confirm uniqueness. ex: { id 1, type: null } and
+										{ type: null, id: 1 } should refer to the same object.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertex: <a href="../interfaces/_utils_.ivertex.html" class="tsd-signature-type">IVertex</a></h5>
+								</li>
+								<li>
+									<h5>parameter: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="get_vertex_uid" class="tsd-anchor"></a>
+					<h3>get_<wbr>vertex_<wbr>uid</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get_<wbr>vertex_<wbr>uid<span class="tsd-signature-symbol">(</span>vertex<span class="tsd-signature-symbol">: </span><a href="../interfaces/_utils_.ivertex.html" class="tsd-signature-type">IVertex</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/The-Pied-Piper/B-Cache/blob/a28b537/src/utils.ts#L13">utils.ts:13</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Retruns a uid string for a vertex.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>note:</dt>
+									<dd><p>Can not stringify {id: ..., type: ...} since order is not
+											gurenteed in this case and we need the order to be fixed to
+											confirm uniqueness. ex: { id 1, type: null } and
+										{ type: null, id: 1 } should refer to the same object.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>vertex: <a href="../interfaces/_utils_.ivertex.html" class="tsd-signature-type">IVertex</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -104,18 +189,24 @@
 					<li class=" tsd-kind-external-module">
 						<a href="_triggers_propertydb_.html">"triggers/propertydb"</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_utils_.html">"utils"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_vertices_.html">"vertices"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/_vertices_.vertex.html" class="tsd-kind-icon">Vertex</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/_utils_.ivertex.html" class="tsd-kind-icon">IVertex</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_utils_.html#get_parameter_uid" class="tsd-kind-icon">get_<wbr>parameter_<wbr>uid</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_utils_.html#get_vertex_uid" class="tsd-kind-icon">get_<wbr>vertex_<wbr>uid</a>
 					</li>
 				</ul>
 			</nav>

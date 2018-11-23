@@ -4,6 +4,7 @@
 [![CircleCI](https://img.shields.io/circleci/project/github/The-Pied-Piper/B-Cache.svg?style=plastic)](https://circleci.com/gh/The-Pied-Piper/B-Cache)
 [![npm](https://img.shields.io/npm/dm/b-cache.svg?style=plastic)](https://www.npmjs.com/package/b-cache)
 [![GitHub package version](https://img.shields.io/github/package-json/v/The-Pied-Piper/B-Cache.svg?style=plastic)](https://github.com/The-Pied-Piper/B-Cache)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/The-Pied-Piper/B-Cache.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/The-Pied-Piper/B-Cache/context:javascript)
 
 
 

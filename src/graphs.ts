@@ -1,4 +1,5 @@
 import { Edge } from "./edges";
+import { get_vertex_uid } from "./utils";
 import { Vertex } from "./vertices";
 
 /**
@@ -27,7 +28,7 @@ export class Graph {
      * null is assumed.
      */
     public get_vertex({ id, type }: { id: string | number, type?: string }): Vertex | undefined {
-        const index = this.get_storage_index(id, type);
+        const index = get_vertex_uid({id, type});
         return this.vertexIndex[index];
     }
 
@@ -48,7 +49,7 @@ export class Graph {
 
         // add the vertices to the graph
         for (const vertex of args) {
-            const index = this.get_storage_index(vertex.id, vertex.type);
+            const index = get_vertex_uid(vertex);
             this.vertexIndex[index] = vertex;
             this.set_edges(vertex);
         }
@@ -69,7 +70,7 @@ export class Graph {
         this.check_argument_duplicates(args);
 
         for (const vertex of args) {
-            const index: string = this.get_storage_index(vertex.id, vertex.type);
+            const index: string = get_vertex_uid(vertex);
             delete this.vertexIndex[index];
         }
     }
@@ -95,14 +96,14 @@ export class Graph {
      *        confirm uniqueness. ex: { id 1, type: null } and
      *        { type: null, id: 1 } should refer to the same object.
      */
-    private get_storage_index(id: number | string, type?: string): string {
-        const idString = JSON.stringify({ i: id }).replace(/}([^}]*)$/, ",$1");
-        const vertexType = type === undefined ? null : type;
-        const typeString = JSON.stringify({ t: vertexType });
-        const index = idString + typeString.substring(1);
-        index.replace(/\s/g, "");
-        return idString + typeString.substring(1);
-    }
+    // private get_storage_index(id: number | string, type?: string): string {
+    //     const idString = JSON.stringify({ i: id }).replace(/}([^}]*)$/, ",$1");
+    //     const vertexType = type === undefined ? null : type;
+    //     const typeString = JSON.stringify({ t: vertexType });
+    //     const index = idString + typeString.substring(1);
+    //     index.replace(/\s/g, "");
+    //     return idString + typeString.substring(1);
+    // }
 
     /**
      * Helper function for [[addVerted]] used to add the edges on a vertex when
@@ -201,7 +202,7 @@ export class Graph {
     private check_argument_duplicates(vertices: Vertex[]) {
         const argIndexes: string[] = [];
         for (const vertex of vertices) {
-            const storageIndex = this.get_storage_index(vertex.id, vertex.type);
+            const storageIndex = get_vertex_uid(vertex);
             const duplicate = argIndexes.some(
                 (vindex) => storageIndex === vindex,
             );

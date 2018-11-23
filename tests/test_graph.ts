@@ -2,6 +2,7 @@ import { expect } from "chai";
 import "mocha";
 import { Edge } from "../src/edges";
 import { Graph } from "../src/graphs";
+import { get_vertex_uid } from "../src/utils";
 import { Vertex } from "../src/vertices";
 
 /* tslint:disable:max-classes-per-file */
@@ -321,7 +322,7 @@ describe("Graph", () => {
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
-            const index = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index = get_vertex_uid(vertex1);
             graph.vertexIndex[index] = vertex1;
             graph.set_edges(vertex1);
             expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
@@ -335,7 +336,7 @@ describe("Graph", () => {
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyChildVertex(12, "test");
-            const index = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index = get_vertex_uid(vertex1);
             graph.vertexIndex[index] = vertex1;
             graph.set_edges(vertex1);
             expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
@@ -348,7 +349,7 @@ describe("Graph", () => {
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
-            const index = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index = get_vertex_uid(vertex1);
             graph.vertexIndex[index] = vertex1;
             graph.set_edges(vertex1);
             expect(vertex1.hasOwnProperty("ed1")).to.equal(true);
@@ -359,7 +360,7 @@ describe("Graph", () => {
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
-            const index = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index = get_vertex_uid(vertex1);
             graph.vertexIndex[index] = vertex1;
             const oldKeys = Object.keys(vertex1);
             graph.set_edges(vertex1);
@@ -376,7 +377,7 @@ describe("Graph", () => {
             }
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12, "test");
-            const index = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index = get_vertex_uid(vertex1);
             graph.vertexIndex[index] = vertex1;
             const rel = graph.relationship(DummyVertex.ed1, vertex1);
             expect(rel.get).to.throw(Error, "here");
@@ -388,9 +389,9 @@ describe("Graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12);
             const vertex2 = new DummyVertex(13);
-            const index1 = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index1 = get_vertex_uid(vertex1);
             graph.vertexIndex[index1] = vertex1;
-            const index2 = graph.get_storage_index(vertex2.id, vertex2.type);
+            const index2 = get_vertex_uid(vertex2);
             graph.vertexIndex[index2] = vertex2;
             const rel = graph.relationship(DummyVertex.ed1, vertex1);
             expect(rel.get()).to.eql([vertex1, vertex2]);
@@ -402,9 +403,9 @@ describe("Graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12);
             const vertex2 = new DummyVertex(13);
-            const index1 = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index1 = get_vertex_uid(vertex1);
             graph.vertexIndex[index1] = vertex1;
-            const index2 = graph.get_storage_index(vertex2.id, vertex2.type);
+            const index2 = get_vertex_uid(vertex2);
             graph.vertexIndex[index2] = vertex2;
             const rel = graph.relationship(DummyVertex.ed1, vertex1);
             expect(rel.get()).to.eql(vertex2);
@@ -417,9 +418,9 @@ describe("Graph", () => {
             const graph = new Graph() as any;
             const vertex1 = new DummyVertex(12);
             const vertex2 = new DummyVertex(13);
-            const index1 = graph.get_storage_index(vertex1.id, vertex1.type);
+            const index1 = get_vertex_uid(vertex1);
             graph.vertexIndex[index1] = vertex1;
-            const index2 = graph.get_storage_index(vertex2.id, vertex2.type);
+            const index2 = get_vertex_uid(vertex2);
             graph.vertexIndex[index2] = vertex2;
             const rel = graph.relationship(DummyVertex.ed1, vertex1);
             expect(rel.get()).to.eql(null);

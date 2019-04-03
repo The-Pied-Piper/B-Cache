@@ -14,7 +14,7 @@ A simple to use memory based storage for complex data types. Currently only a gr
 
 To install the package for use in your own project just use npm
 ```
-npm install B-Cache
+npm install b-cache
 ```
 
 ## Usage
